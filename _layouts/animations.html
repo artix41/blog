@@ -1,0 +1,34 @@
+---
+layout: base
+---
+
+<article class="page" role="article">
+    <header>
+      <h1 class="page-title">{{ page.title }}</h1>
+      {% include components/message.html text=page.description hide=page.hide_description %}
+    </header>
+
+    <div class="projects-gallery">
+        <a href="http://gui.quantumcodes.io" class="projects-link">
+            <div class="projects-item">
+                <div class="projects-img"><img src="/assets/img/animations/toric-code-gui.png" /></div>
+                <p class="projects-title">Toric Code Visualizer</p>
+                <p class="projects-subtitle">Learn quantum error correction by manipulating the 2D and 3D toric codes with our interactive interface</p>
+            </div>
+        </a>
+        <a href="http://ising.arthurpesah.me" class="projects-link">
+            <div class="projects-item">
+                <div class="projects-img"><img src="/assets/img/animations/magnet-simulation.png" /></div>
+                <p class="projects-title">Magnet Simulation</p>
+                <p class="projects-subtitle">3D simulation of a magnet at finite temperature: illustration of the Ising model and its phase transitions</p>
+            </div>
+        </a>
+        <a href="http://galaxy.ensta.fr" class="projects-link">
+            <div class="projects-item">
+                <div class="projects-img"><img src="/assets/img/animations/spiral-kreator.png" /></div>
+                <p class="projects-title">Spiral Kreator</p>
+                <p class="projects-subtitle">Create your own spiral galaxy with the density wave model and compare your creation with real ones</p>
+            </div>
+        </a>
+    </div>
+</article>
