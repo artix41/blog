@@ -58,6 +58,7 @@
     "hy-drawer": "1.0.0-pre.27",
     "hy-push-state": "1.0.0-pre.27",
     "intersection-observer": "^0.7.0",
+    "mathjax": "^3.2.2",
     "regenerator-runtime": "^0.13.5",
     "resize-observer-polyfill": "^1.5.1",
     "rxjs": "^6.5.5",

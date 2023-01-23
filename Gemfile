@@ -8,6 +8,8 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
+ruby "2.7.5"
+
 gem "jekyll"
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
@@ -27,6 +29,7 @@ group :jekyll_plugins do
   gem "jekyll-sitemap"
   gem "jekyll-titles-from-headings"
   gem "jekyll-replace-img"
+  gem "jekyll-include-cache", group: :jekyll_plugins
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

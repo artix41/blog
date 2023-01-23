@@ -4,7 +4,7 @@
 # IMPORTANT: Set the URL of your site.
 # Set to https://<username>.github.io when hosting on GitHub Pages
 # (unless you are using a custom domain).
-url:                   https://artix41.github.io
+url:                   https://arthurpesah.me
 
 # IMPORTANT: Set The "base URL" of your site.
 # When your site sits in a subdirectory, set to /<name of directory>
@@ -277,12 +277,13 @@ plugins:
   - jekyll-sitemap
   - jekyll-titles-from-headings
   - jekyll-replace-img
+  - jekyll-include-cache
 
 # Theme
 # ---------------------------------------------------------------------------------------
 
-# theme: jekyll-theme-hydejack
-# remote_theme: qwtel/hydejack@gem
+remote_theme: hydecorp/hydejack@v9.1.6
+
 
 # SEO Tag
 # ---------------------------------------------------------------------------------------
@@ -330,7 +331,7 @@ relative_links:
 titles_from_headings:
   strip_title:         true
   collections:         true
-  
+
 replace_img:
   re_img:              <img\s*(?<attrs>.*?)\s*/>
   re_ignore:           (re|data)-ignore
