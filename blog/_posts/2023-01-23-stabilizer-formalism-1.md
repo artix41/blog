@@ -9,7 +9,7 @@ related_posts:
 
 Now that you know [all you need to know about classical error correction](2022-05-21-classical-error-correction.md), the time has finally come to learn how to correct those damn errors that keep sabotaging your quantum computer! The key tool, introduced by Daniel Gottesman in [his landmark 1997 PhD thesis](https://thesis.library.caltech.edu/2900/2/THESIS.pdf) (an instant classic, needless to say!), is the stabilizer formalism.
 The same way most classical codes fall into the linear code category, almost all the quantum codes you will encounter can be classified as stabilizer codes. And for a good reason: stabilizer codes are simply the quantum generalization of linear codes!
-Your beloved parity checks will turned into stabilizers, a set of commuting measurements controlling the parity of your qubits in different basis.
+Your beloved parity checks will turn into stabilizers, a set of commuting measurements controlling the parity of your qubits in different bases.
 Parity-check matrices and Tanner graphs will get slightly bigger and more constrained. But apart from that, if you're more or less comfortable with the notions discussed in the last post, going quantum shouldn't give you too much trouble.
 
 So, what's the plan? To make the content of this post a bit more digestable, I've decided to divide it into two parts.
@@ -32,7 +32,7 @@ $$
 
 We define the **codespace** of our code as the space of all the states that can be written as above (for any $$a,b$$).
 Let's see how errors affect the codespace.
-As we saw in the first post, quantum noise comes into two flavours: $$X$$ errors, also known as bit-flips, and $$Z$$ errors, also known as phase-flips.
+As we saw in the first post, quantum noise comes into two flavours: $$X$$ errors, also known as bit flips, and $$Z$$ errors, also known as phase flips.
 Let's focus on $$X$$ errors first.
 If an $$X$$ error occurs on the first qubit, the state is transformed into
 
@@ -77,7 +77,7 @@ $$
 $$
 
 This is still in the codespace of our code! Therefore, we have no way to detect this error:
-$$Z$$ errors consitute **logical errors**.
+$$Z$$ errors are **logical errors**.
 We define the **distance** of a code as the smallest Pauli error that maps the codespace to itself,
 or in other words, the smallest logical error. Since a single $$Z$$ error in the quantum repetition code
 is undetectable, it means that the distance of the code is $$1$$.
@@ -115,7 +115,7 @@ $$
 
 The odd parity between qubit 4 and qubits 5 and 6, detected by measuring $$Z_4 Z_5$$ and $$Z_5 Z_6$$, tells us that the $$X$$ error occurred on qubit $$4$$.
 
-To understand how to detect $$Z$$ errors, let's remember that for the Z-basis repetition code, the operator $$\bar{X}=XXX$$ is a logical Pauli $$X$$ operator, turning $$\vert 0 \rangle_{L_1}$$ into $$\vert 1 \rangle_{L_1}$$. Let's denote the logical $$X$$ operators of our three logical qubits $$\bar{X_1}=X_1 X_2 X_3$$, $$\bar{X_2}=X_4 X_5 X_6$$ and $$\bar{X_3}=X_7 X_8 X_9$$.
+To understand how to detect $$Z$$ errors, let's remember that for the Z-basis repetition code, the operator $$\overline{X}=XXX$$ is a logical Pauli $$X$$ operator, turning $$\vert 0 \rangle_{L_1}$$ into $$\vert 1 \rangle_{L_1}$$. Let's denote the logical $$X$$ operators of our three logical qubits $$\overline{X_1}=X_1 X_2 X_3$$, $$\overline{X_2}=X_4 X_5 X_6$$ and $$\overline{X_3}=X_7 X_8 X_9$$.
 To detect $$Z$$ errors, we can measure the parity $$\overline{X}_i \overline{X}_{j}$$ for $$i$$ and $$j$$ two neighboring logical qubits of the first code.
 
 For instance, if a $$Z$$ error occurs on the fourth qubit of the logical zero state, we would get:
@@ -126,15 +126,15 @@ Z_4 \vert 0 \rangle_{L_2} = \vert +-+ \rangle_{L_1} = \frac{1}{2^{3/2}} \left(\v
 \end{aligned}
 $$
 
-The odd parity between logical qubits $$1$$ and $$2$$ and qubits $$2$$ and $$3$$ can be detected using the operator $$\bar{X_1} \bar{X_2} = X_1 X_2 X_3 X_4 X_5 X_6$$ and $$\bar{X_2} \bar{X_3} = X_4 X_5 X_6 X_7 X_8 X_9$$. You can check that explicitely by applying those operators to $$Z_4 \vert 0 \rangle_{L_2}$$ and showing for instance that
+The odd parity between logical qubits $$1$$ and $$2$$ and qubits $$2$$ and $$3$$ can be detected using the operator $$\overline{X_1} \overline{X_2} = X_1 X_2 X_3 X_4 X_5 X_6$$ and $$\overline{X_2} \overline{X_3} = X_4 X_5 X_6 X_7 X_8 X_9$$. You can check that explicitely by applying those operators to $$Z_4 \vert 0 \rangle_{L_2}$$ and showing for instance that
 
 $$
 \begin{aligned}
-\bar{X_1} \bar{X_2} Z_4 \vert 0 \rangle_{L_2} = - Z_4 \vert 0 \rangle_{L_2}
+\overline{X_1} \overline{X_2} Z_4 \vert 0 \rangle_{L_2} = - Z_4 \vert 0 \rangle_{L_2}
 \end{aligned}
 $$
 
-meaning that the result of measuring $$\bar{X_1} \bar{X_2}$$ will be $$-1$$ (those calculations should be immediate after having read the [Appendix](2023-01-21-stabilizer-formalism-1/#appendix-handling-pauli-operators-with-ease)).
+meaning that the result of measuring $$\overline{X_1} \overline{X_2}$$ will be $$-1$$.
 
 So our code is able to detect and correct any single-qubit error. But what about errors of higher weight? Or in other words, what is the distance of Shor's code (i.e. the smallest undetectable errors)? Since this is a perfect exercise to see if you've understood this code, I leave this question as an exercise!
 
@@ -142,7 +142,7 @@ So our code is able to detect and correct any single-qubit error. But what about
 *(**Hint**: find a weight-3 error, made of either $$X$$ or $$Z$$ elements, that preserves the codespace)*
 {:.message}
 
-In summary, we have found a $$[[9,1,3]]$$ quantum code that can detect both $$X$$ and $$Z$$ errors by measuring a set of operators $$\{ Z_i Z_j \}$$ and $$\{\bar{X_i} \bar{X_j} \}$$. This means that error-free states (i.e. codewords) are a common $$+1$$ eigenstate of those operators, while states subjected to weight-1 and weight-2 errors are $$-1$$ eigenstates of some of those operators, allowing us to detect those errors. With this example in mind, we are now finally ready to delve into the stabilizer formalism!
+In summary, we have found a $$[[9,1,3]]$$ quantum code that can detect both $$X$$ and $$Z$$ errors by measuring a set of operators $$\{ Z_i Z_j \}$$ and $$\{\overline{X_i} \overline{X_j} \}$$. This means that error-free states (i.e. codewords) are a common $$+1$$ eigenstate of those operators, while states subjected to weight-1 and weight-2 errors are $$-1$$ eigenstates of some of those operators, allowing us to detect those errors. With this example in mind, we are now finally ready to delve into the stabilizer formalism!
 
 
 ## Stabilizer formalism: first definitions
@@ -186,9 +186,9 @@ $$
 This set is well-defined, since by definition all the stabilizers commute, and have therefore some common eigenstates.
 Moreover, each stabilizer has at least one $$+1$$ eigenvalue (remember that $$-I$$ is not included in the stabilizer group), so there is a common $$+1$$ eigenstate of all the stabilizers. Finally, you can notice that $$\mathcal{C}$$ forms a vector space, and therefore defines a valid code.
 
-This one-to-one correspondence between codespaces defined as above and stabilizer groups is at the foundation of quantum error correction: instead of the thinking of codes in the state picture (as a vector space of states), we can now think of them in the operator picture (as a stabilizer group). For instance, Shor's code can either be defined in the state picture, as the codespace $$\{a \vert 0 \rangle_{L_2} + b \vert 1 \rangle_{L_2} \}$$ (with $$\vert 0 \rangle_{L_2}$$ and $$\vert 1 \rangle_{L_2}$$ defined in the previous section), or in the operator picture, as the codespace stabilized by $$\langle Z_i Z_j, \bar{X_i} \bar{X_j} \rangle$$ with $$i,j$$ neighboring physical/logical qubits.
+This one-to-one correspondence between codespaces defined as above and stabilizer groups is at the foundation of quantum error correction: instead of the thinking of codes in the state picture (as a vector space of states), we can now think of them in the operator picture (as a stabilizer group). For instance, Shor's code can either be defined in the state picture, as the codespace $$\{a \vert 0 \rangle_{L_2} + b \vert 1 \rangle_{L_2} \}$$ (with $$\vert 0 \rangle_{L_2}$$ and $$\vert 1 \rangle_{L_2}$$ defined in the previous section), or in the operator picture, as the codespace stabilized by $$\langle Z_i Z_j, \overline{X_i} \overline{X_j} \rangle$$ with $$i,j$$ neighboring physical/logical qubits.
 
-Last but not least, how can we detect and correct errors with a stabilizer code? As we saw with the repetition code and Shor's code, the idea is to simply measure all the stabilizers, resulting in what is called the **syndrome**. If no error has occurred, the syndrome should consist of $$+1$$ for all the stabilizers. If a Pauli error $$E$$ occcurs, there are two possibilities for each stabilizer $$S$$: either it commutes or it anticommutes with it. If it commutes, we will measure $$+1$$:
+Last but not least, how can we detect and correct errors with a stabilizer code? As we saw with the repetition code and Shor's code, the idea is to simply measure all the stabilizers, resulting in what is called the **syndrome**. If no error has occurred, the syndrome should consist of $$+1$$ for all the stabilizers. If a Pauli error $$E$$ has occurred, there are two possibilities for each stabilizer $$S$$: either it commutes or it anticommutes with it. If it commutes, we will measure $$+1$$:
 
 $$
 \begin{aligned}
@@ -204,10 +204,10 @@ SE \vert \psi \rangle = - ES \vert \psi \rangle = - E \vert \psi \rangle
 \end{aligned}
 $$
 
-To detect $$X$$ errors, we therefore need stabilizers made of $$Z$$ or $$Y$$ operators, while to detect $$Z$$ errors, we need stabilizers made of $$X$$ or $$Y$$ operators.
+To detect $$X$$ errors, we therefore need stabilizers with some $$Z$$ or $$Y$$ operators, while to detect $$Z$$ errors, we need stabilizers with some $$X$$ or $$Y$$ operators.
 
 So what have we done so far? We have shown that given a stabilizer group, that is a set of commuting Pauli operators that does not contain $$-I$$, we can construct a quantum code by considering the common +1 eigenspace of all the stabilizers.
-When errors occur in this code, moving the state outside of the codespace, they can be detected (and sometimes corrected) by measuring all the stabilizers and checking if some measurements are equal to $$-1$$. We have also seen that the number of logical qubits as well as the distance of this code can be extracted directly from the stabilizer group.
+When errors occur in this code, moving the state outside of the codespace, they can be detected (and sometimes corrected) by measuring all the stabilizers and checking if some measurements are equal to $$-1$$.
 
 However, we haven't yet given any method to construct interesting stabilizer groups. The next section introduces one of the most important family of stabilizer codes, the CSS codes, which will help us to build a new example of quantum code: the quantum version of the Hamming code.
 
@@ -215,10 +215,10 @@ However, we haven't yet given any method to construct interesting stabilizer gro
 
 So, how can we construct stabilizer codes? One method is to start from two classical codes: one that will take care of $$X$$ errors and one that will take care of $$Z$$ errors. As we saw in the previous section, to correct $$X$$ errors, we can use stabilizers made of $$Z$$ operators, and to correct $$Z$$ errors, we can use stabilizers made of $$X$$ operators.
 
-The idea is therefore the following: let's pick two classical codes that we will call $$C_X$$ and $$C_Z$$. For each parity check of $$C_X$$, supported on bits $$b_1,\ldots,b_k$$, add the stabilizer $$X_{b_1} \ldots X_{b_k}$$ to the stabilizer group. Similarly, for each parity check of $$C_Z$$, supported on bits $$b_1,\ldots,b_k$$, add the stabilizer $$Z_{b_1} \ldots Z_{b_k}$$ to the stabilizer group.
-For the resulting quantum code to be valid, remember that all the stabilizers should be commuting. While stabilizers of the same Pauli type necessarily commute, it is not obvious that all the $$Z$$ stabilizers commute with all the $$X$$ stabilizers. For this to be the case, each $$X$$ stabilizer should intersect on an even number of qubits with all the $$Z$$ stabilizers (see [Appendix](2023-01-21-stabilizer-formalism-1/#appendix-handling-pauli-operators-with-ease)). If this is the case, the resulting quantum code is valid and form what is called a Calderbank-Shor-Steane (CSS) code. More precisely, a **CSS code** is a stabilizer code that can be generated by a set of pure $$X$$ and pure $$Z$$ stabilizers. Most examples of quantum codes you will find in the literature are example of CSS codes, making it one of the most important family of codes.
+The idea is therefore the following: let's pick two classical codes that we will call $$C_X$$ and $$C_Z$$. For each parity check of $$C_X$$, supported on bits $$b_1,\ldots,b_k$$, add the stabilizer $$X_{b_1} \ldots X_{b_k}$$ to the stabilizer group. Similarly, for each parity check of $$C_Z$$, supported on bits $$b'_1,\ldots,b'_k$$, add the stabilizer $$Z_{b'_1} \ldots Z_{b'_k}$$ to the stabilizer group.
+For the resulting quantum code to be valid, remember that all the stabilizers should commute. While stabilizers of the same Pauli type necessarily commute, it is not obvious that all the $$Z$$ stabilizers commute with all the $$X$$ stabilizers. For this to be the case, each $$X$$ stabilizer should intersect on an even number of qubits with all the $$Z$$ stabilizers (see [Appendix](2023-01-21-stabilizer-formalism-1/#appendix-handling-pauli-operators-with-ease)). If this is the case, the resulting quantum code is valid and form what is called a Calderbank-Shor-Steane (CSS) code. More precisely, a **CSS code** is a stabilizer code that can be generated by a set of pure $$X$$ and pure $$Z$$ stabilizers. For instance, both codes that we have encountered before, Shor's code and the quantum repetition code, are examples of CSS codes. And so are most of the codes that you will encounter in the literature, making CSS codes one of the most important family of codes.
 
-However, if you try the construction above with most codes taken from the classical literature, you will find that it is very difficult to pass the commutation criterion. Therefore, more involved methods are needed to construct quantum codes, such as topological constructions or hypergraph products. However, there is on example where our procedure works extremely well: the Hamming code!
+However, if you try the construction above with some random codes $$C_X$$ and $$C_Z$$ taken from the classical literature, you will find that it is very difficult to pass the commutation criterion. Therefore, more involved methods are needed to construct quantum codes, such as topological constructions or hypergraph products. However, there is on example where our procedure works extremely well: our good old Hamming code!
 
 ## Steane code, the quantum version of the Hamming code
 
@@ -263,11 +263,11 @@ In this figure, each vertex (numbered from 1 to 7) represents a qubit, and each 
 ![](/assets/img/blog/stabilizer-formalism/steane-code-stabilizers.png)
 {:.figure}
 
-From this representation, it is easy to see that each stabilizer intersect with every other stabilizers on either 2 or 4 qubits, which is an even number. As we discussed earlier, it means that elements of $$\mathcal{S}_X$$ and $$\mathcal{S}_Z$$ commute, and we can form a valid code by combining the generators of the two groups. The resulting code is called the **Steane code**, and is an example of **color code** (a very interesting family of codes which would deserve their own blog post).
+From this representation, it is easy to see that each plaquette stabilizer intersects with every other plaquette stabilizers on exactly two qubits, which is an even number. As we discussed earlier, it means that elements of $$\mathcal{S}_X$$ and $$\mathcal{S}_Z$$ commute, and we can form a valid code by combining the generators of the two groups. The resulting code is called the **Steane code**, and is an example of **color code** (a very interesting family of codes which would deserve their own blog post).
 
 The Steane code is often considered a promising candidate for near-term quantum error correction and is indeed one of the first codes to have been implemented on a real device (by different teams of ion trappers) [^2]. This is due to its many nice properties: its small size (it only requires $$7$$ physical qubits), its 2D locality (it can be built on a 2D lattice without requiring long-range connections to measure the stabilizers), and the presence of many transversal logical gates (a topic for another time). Furthermore, it only requires the measurement of weight-4 stabilizers, as opposed to Shor's code which requires measuring weight-6 stabilizers. Since errors can happen during the measurement of stabilizers, a good rule of thumb to get well-performing quantum codes is to always try to minimize the weight of its stabilizer generators.
 
-We will study the characteristics of the Steane code in the next post, showing that it is a $$[[7,1,3]]$$ quantum code. Meanwhile, we can already look at what happens in the presence of single-qubit errors. Since $$X$$ and $$Z$$ errors are detected in the same way (using either $$X$$ or $$Z$$ stabilizers on the plaquettes), we can consider $$Z$$ errors only without loss of generality. Below is the observed syndrome for a $$Z$$ error on qubits $$1$$ to $$3$$:
+We will study the characteristics of the Steane code in the next post, showing that it is a $$[[7,1,3]]$$ quantum code. Meanwhile, we can already look at what happens in the presence of single-qubit errors. Since $$X$$ and $$Z$$ errors are detected in the same way (using either $$X$$ or $$Z$$ stabilizers on the plaquettes), we can consider the effect of $$Z$$ errors only, without loss of generality. Below is the observed syndrome for a $$Z$$ error on qubits $$1$$ to $$3$$:
 
 <p style="text-align:center;">
     <img src="/assets/img/blog/stabilizer-formalism/steane-code-errors.png"/>
@@ -284,7 +284,7 @@ Therefore, the Steane code can correct any single-qubit error.
 
 In this post, we have introduced the most important tool to build and analyze quantum codes: the stabilizer formalism. Starting from a stabilizer group (set of commuting Pauli operators), we found that we can construct a codespace by considering the common $$+1$$ eigenspace of its elements. We defined the family of CSS codes, whose stabilizer generators can be split into pure $$X$$ and pure $$Z$$ elements. We studied a few examples of stabilizer codes: the $$[[3,1,1]]$$ repetition code, the $$[[9,1,3]]$$ Shor code, and the $$[[7,1,3]]$$ Steane code.
 
-In the next post, we will go further in our study of stabilizer codes: we will learn how to find the logical operators, the distance and the number of encoded qubits of a code. We will see how the stabilizer formalism can be expressed in a matrix form, by generalizing parity-check matrices to the quantum realm. This matrix formulation will be help us to define the decoding problem for quantum codes (similarly to how we did it for classical codes). We will finish our theoretical study of stabilizer code by introducing the Clifford group and stabilizer states, concepts which will become very handy when learning about code simulations and logical gates. The Steane code will continue to serve as our main example throughout the next post.
+In the next post, we will go further in our study of stabilizer codes: we will learn how to find the logical operators, the distance and the number of encoded qubits of a code. We will see how the stabilizer formalism can be expressed in a matrix form, by generalizing parity-check matrices to the quantum realm. This matrix formulation will help us to define the decoding problem for quantum codes (similarly to how we did it for classical codes). We will finish our theoretical study of stabilizer codes by introducing the Clifford group and stabilizer states, concepts which will become very handy when learning about code simulations and logical gates. The Steane code will continue to serve as our main example throughout the next post.
 
 ## Appendix: useful tricks to manipulate Pauli operators
 
