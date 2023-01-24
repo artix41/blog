@@ -1,5 +1,6 @@
 ---
 title: "Quantum error correction with the stabilizer formalism — Part I"
+image: /assets/img/blog/stabilizer-formalism-1/thumbnail.png
 tags: [quantum-computing]
 description: >
 comments: true
@@ -12,9 +13,9 @@ The same way most classical codes fall into the linear code category, almost all
 Your beloved parity checks will turn into stabilizers, a set of commuting measurements controlling the parity of your qubits in different bases.
 Parity-check matrices and Tanner graphs will get slightly bigger and more constrained. But apart from that, if you're more or less comfortable with the notions discussed in the last post, going quantum shouldn't give you too much trouble.
 
-So, what's the plan? To make the content of this post a bit more digestable, I've decided to divide it into two parts.
+So, what's the plan? To make the content of this post a bit more digestible, I've decided to divide it into two parts.
 In the first part, we will start by motivating the need for the stabilizer formalism, using the quantum repetition code and Shor's code as examples. We will then be ready to formally define stabilizer codes and one of its most important families, the CSS codes.
-To illustrate our construction, we will end the post by introducing a simple code that really examplifies the stabilizer and CSS construction: the Steane code. Finally, in case you need it, I've put some reminders on the manipulation of Pauli operators in the appendix.
+To illustrate our construction, we will end the post by introducing a simple code that really exemplifies the stabilizer and CSS construction: the Steane code. Finally, in case you need it, I've put some reminders on the manipulation of Pauli operators in the appendix.
 
 In the second part of this series, we will look more deeply into the properties of stabilizer codes. In particular, we will introduce the notion of logical operator, see how to generalize parity-check matrices and Tanner graphs to the quantum setting, and study some properties of stabilizers states and the Clifford group.
 
@@ -58,7 +59,7 @@ For instance, $$Z_1 Z_2 \vert \psi \rangle = \vert \psi \rangle$$, meaning that 
 On the other hand, $$Z_1 Z_2 \vert \widetilde{\psi} \rangle = Z_1 Z_2 X_1 \vert \psi \rangle = - X_1 Z_1 Z_2 \vert \psi \rangle = -\vert \widetilde{\psi} \rangle$$, so measuring this operator when a bit-flip has occurred on the first qubit gives $$-1$$ (if this manipulation of Pauli operators is not straightforward to you, feel free to read the [Appendix](2023-01-21-stabilizer-formalism-1/#appendix-handling-pauli-operators-with-ease) on Pauli operators and come back).
 Checking those calculations on your own, and for other examples of bit-flip errors, should convince you that measuring $$Z_i Z_j$$ gives you exactly the parity between the qubits $$i$$ and $$j$$. In general, the result of measuring those operators is exactly like the syndrome we introduced in the previous post: we get $$+1$$ when a parity-check equation is satisfied, and $$-1$$ when it is not. As an example of how to measure those parity checks, the circuit to measure $$Z_1 Z_2$$ is given below:
 
-![](/assets/img/blog/stabilizer-formalism/repetition-code-circuit.png)
+![](/assets/img/blog/stabilizer-formalism-1/repetition-code-circuit.png)
 {:.figure}
 
 So, what have we done so far? We have found a set of operators $$\{Z_i Z_j\}$$ such that:
@@ -126,7 +127,7 @@ Z_4 \vert 0 \rangle_{L_2} = \vert +-+ \rangle_{L_1} = \frac{1}{2^{3/2}} \left(\v
 \end{aligned}
 $$
 
-The odd parity between logical qubits $$1$$ and $$2$$ and qubits $$2$$ and $$3$$ can be detected using the operator $$\overline{X_1} \overline{X_2} = X_1 X_2 X_3 X_4 X_5 X_6$$ and $$\overline{X_2} \overline{X_3} = X_4 X_5 X_6 X_7 X_8 X_9$$. You can check that explicitely by applying those operators to $$Z_4 \vert 0 \rangle_{L_2}$$ and showing for instance that
+The odd parity between logical qubits $$1$$ and $$2$$ and qubits $$2$$ and $$3$$ can be detected using the operator $$\overline{X_1} \overline{X_2} = X_1 X_2 X_3 X_4 X_5 X_6$$ and $$\overline{X_2} \overline{X_3} = X_4 X_5 X_6 X_7 X_8 X_9$$. You can check that explicitly by applying those operators to $$Z_4 \vert 0 \rangle_{L_2}$$ and showing for instance that
 
 $$
 \begin{aligned}
@@ -156,7 +157,7 @@ Moreover, any codeword is a common $$+1$$ eigenstate of all the stabilizers, i.e
 
 The goal is to go backward: given any set of stabilizers, does it define a code?
 As found out by Daniel Gottesman, the answer is yes, and this simple fact has been foundational for quantum error correction, allowing us to find codes by searching for stabilizers with good properties.
-Let us now introduce the formalism behind this brillant idea.
+Let us now introduce the formalism behind this brilliant idea.
 
 The n-qubit **Pauli group** $$\mathcal{P}_n$$ is the set of all Pauli operators on $$n$$ qubits, with the usual matrix multiplication as the group operation, that is:
 
@@ -254,13 +255,13 @@ $$
 It is often convenient to visualize stabilizer codes using some graphical representations. Here is how to visualize the stabilizers defined above:
 
 <p style="text-align:center;">
-    <img src="/assets/img/blog/stabilizer-formalism/steane-code-lattice.png" height="300"/>
+    <img src="/assets/img/blog/stabilizer-formalism-1/steane-code-lattice.png" height="300"/>
 </p>
 {:.figure}
 
-In this figure, each vertex (numbered from 1 to 7) represents a qubit, and each coloured face (often called **plaquette** in the literature) supports an $$X$$ and a $$Z$$ stabilizer. The different plaquette stabilizers are shown explicitely here:
+In this figure, each vertex (numbered from 1 to 7) represents a qubit, and each coloured face (often called **plaquette** in the literature) supports an $$X$$ and a $$Z$$ stabilizer. The different plaquette stabilizers are shown explicitly here:
 
-![](/assets/img/blog/stabilizer-formalism/steane-code-stabilizers.png)
+![](/assets/img/blog/stabilizer-formalism-1/steane-code-stabilizers.png)
 {:.figure}
 
 From this representation, it is easy to see that each plaquette stabilizer intersects with every other plaquette stabilizers on exactly two qubits, which is an even number. As we discussed earlier, it means that elements of $$\mathcal{S}_X$$ and $$\mathcal{S}_Z$$ commute, and we can form a valid code by combining the generators of the two groups. The resulting code is called the **Steane code**, and is an example of **color code** (a very interesting family of codes which would deserve their own blog post).
@@ -270,7 +271,7 @@ The Steane code is often considered a promising candidate for near-term quantum 
 We will study the characteristics of the Steane code in the next post, showing that it is a $$[[7,1,3]]$$ quantum code. Meanwhile, we can already look at what happens in the presence of single-qubit errors. Since $$X$$ and $$Z$$ errors are detected in the same way (using either $$X$$ or $$Z$$ stabilizers on the plaquettes), we can consider the effect of $$Z$$ errors only, without loss of generality. Below is the observed syndrome for a $$Z$$ error on qubits $$1$$ to $$3$$:
 
 <p style="text-align:center;">
-    <img src="/assets/img/blog/stabilizer-formalism/steane-code-errors.png"/>
+    <img src="/assets/img/blog/stabilizer-formalism-1/steane-code-errors.png"/>
 </p>
 {:.figure}
 
