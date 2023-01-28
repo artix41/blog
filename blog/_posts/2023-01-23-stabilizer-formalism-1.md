@@ -8,7 +8,7 @@ related_posts:
     -
 ---
 
-Now that you know [all you need to know about classical error correction](2022-05-21-classical-error-correction.md), the time has finally come to learn how to correct those damn errors that keep sabotaging your quantum computer! The key tool, introduced by Daniel Gottesman in [his landmark 1997 PhD thesis](https://thesis.library.caltech.edu/2900/2/THESIS.pdf) (an instant classic, needless to say!), is the stabilizer formalism.
+Now that you know [all you need to know about classical error correction](2022-05-21-classical-error-correction.md), the time has finally come to learn how to correct those damn errors that keep sabotaging your quantum computer! The key tool, introduced by Daniel Gottesman in [his landmark 1997 PhD thesis](https://thesis.library.caltech.edu/2900/2/THESIS.pdf) is the stabilizer formalism.
 The same way most classical codes fall into the linear code category, almost all the quantum codes you will encounter can be classified as stabilizer codes. And for a good reason: stabilizer codes are simply the quantum generalization of linear codes!
 Your beloved parity checks will turn into stabilizers, a set of commuting measurements controlling the parity of your qubits in different bases.
 Parity-check matrices and Tanner graphs will get slightly bigger and more constrained. But apart from that, if you're more or less comfortable with the notions discussed in the last post, going quantum shouldn't give you too much trouble.
