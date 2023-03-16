@@ -5,7 +5,7 @@ tags: [quantum-computing]
 description: >
 comments: true
 related_posts:
-    - 
+    -
 ---
 
 When learning about quantum error correction (QEC) for the first time, I tried to jump directly into the core of the subject, going from the stabilizer formalism to topological codes and decoders, but completely missing the classical origin of those notions. The reason is that many introductions to the subject do a great job presenting all those concepts in a self-contained way, without assuming any knowledge in error correction.
@@ -62,7 +62,7 @@ $$
 $$
 
 For instance, the distance of the 3-repetition code is 3 (we need to flip all 3 bits to have an undetectable error).
-A code that encodes $$k$$ bits with $$n$$ bits and has a distance $$d$$ is called an $$[n,k,d]$$**-code**. The 3-repetition code is an example of $$[3,1,3]$$-code. 
+A code that encodes $$k$$ bits with $$n$$ bits and has a distance $$d$$ is called an $$[n,k,d]$$**-code**. The 3-repetition code is an example of $$[3,1,3]$$-code.
 
 Finally, the **rate** of an $$[n, k, d]$$-code is defined as $$R=k/n$$ (so $$R=1/3$$ in our case).
 
@@ -281,7 +281,7 @@ since all operations are performed modulo 2, and $$2=0 \mod 2$$.
 
 Similarly to how all generator matrices can be chosen to have the form $$\bm{G}=\left(\begin{matrix} I_k \\ \hline \bm{A}  \end{matrix} \right)$$, we can always apply a Gaussian reduction on $$H$$ such that is has the form $$\bm{H}=\left(\begin{matrix} \bm{A} & I_m  \end{matrix} \right)$$.
 
-At that point of the post, you might be wondering why we should use the parity-check matrix, when the generator matrix seems much more natural. There are many reasons to prefer the parity-check matrix over the generator matrix. The simplest one is that it gives a convenient method to detect and correct errors. Indeed, if $$\widetilde{\bm{y}}=\bm{y} + \bm{e}$$ is the received message disturbed by an error vector $$\bm{e}$$, applying the parity-check matrix to $$\widetilde{\bm{y}}$$ gives
+At this point of the post, you might be wondering why we should use the parity-check matrix, when the generator matrix seems much more natural. There are many reasons to prefer the parity-check matrix over the generator matrix. The simplest one is that it gives a convenient method to detect and correct errors. Indeed, if $$\widetilde{\bm{y}}=\bm{y} + \bm{e}$$ is the received message disturbed by an error vector $$\bm{e}$$, applying the parity-check matrix to $$\widetilde{\bm{y}}$$ gives
 
 $$
 \begin{aligned}
