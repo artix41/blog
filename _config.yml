@@ -53,6 +53,8 @@ menu:
     url:               /blog/
   - title:             Publications
     url:               /publications/
+  - title:             Other writings
+    url:               /writing/
   - title:             Talks
     url:               /talks/
   - title:             Animations

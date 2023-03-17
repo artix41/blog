@@ -3,6 +3,10 @@ title: Talks
 layout: page
 ---
 
+## 2022
+
+* [Tailoring 3D topological codes for biased noise](/assets/pdf/talk-fu-berlin-biased-noise.pdf), FU Berlin group seminar [\[Video\]](https://www.youtube.com/watch?v=6dPImVNYGOY&ab_channel=JensEisert)
+
 ## 2021
 
 * [Absence of Barren Plateaus in Quantum Convolutional Neural Networks](https://artix41.github.io/assets/pdf/aps-march-meeting-2021-talk.pdf), APS March Meeting 2021

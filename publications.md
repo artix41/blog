@@ -2,8 +2,6 @@
 title: Publications
 ---
 
-## Papers
-
 Tailoring Three-Dimensional Topological Codes for Biased Noise
  [\[PDF\]](https://arxiv.org/pdf/2211.02116.pdf)
 {:.lead style="margin-bottom: 0"}
@@ -41,8 +39,8 @@ Machine Learning: Science and Technology, 2020
 [arXiv:2005.08582](https://arxiv.org/abs/2005.08582)
 {: style="margin-top:0"}
 
-Recurrent Machines for Likelihood-Free Inference 
-[\[PDF\]](http://metalearning.ml/2018/papers/metalearn2018_paper77.pdf) 
+Recurrent Machines for Likelihood-Free Inference
+[\[PDF\]](http://metalearning.ml/2018/papers/metalearn2018_paper77.pdf)
 [\[Code\]](https://github.com/artix41/alfi-pytorch)
 {:.lead style="margin-bottom: 0"}
 Arthur Pesah, Antoine Wehenkel and Gilles Louppe
@@ -50,63 +48,4 @@ Arthur Pesah, Antoine Wehenkel and Gilles Louppe
 2nd Workshop on Meta-Learning at NeurIPS 2018
 {: style="margin-top:0; margin-bottom:0"}
 [arXiv:1811.12932](https://arxiv.org/abs/1811.12932)
-{: style="margin-top:0"}
-
-## Other writings
-
-Tailoring 3D topological codes and decoders to biased noise
-[\[PDF\]](https://artix41.github.io/assets/pdf/master-thesis-ucl.pdf)
-{:.lead style="margin-bottom: 0"}
-Arthur Pesah (Supervisor: Dan Browne)
-{:.faded style="margin-bottom: 0"}
-Master's thesis (UCL), 2021
-{: style="margin-top:0"}
-
-Introduction to adiabatic quantum computing
-[\[PDF\]](https://artix41.github.io/assets/pdf/introduction-quantum-annealing.pdf)
-{:.lead style="margin-bottom: 0"}
-Arthur Pesah
-{:.faded style="margin-bottom: 0"}
-Report for a quantum computing course, 2021
-{: style="margin-top:0"}
-
-Quantum algorithms for solving differential equations
-[\[PDF\]](https://artix41.github.io/assets/pdf/case-study-quantum-algorithms-pde.pdf)
-{:.lead style="margin-bottom: 0"}
-Arthur Pesah
-{:.faded style="margin-bottom: 0"}
-MRes Case Study Report, 2021
-{: style="margin-top:0"}
-
-Classification of topological phases of matter
-[\[PDF\]](https://artix41.github.io/assets/pdf/case-study-topological-matter.pdf)
-{:.lead style="margin-bottom: 0"}
-Arthur Pesah
-{:.faded style="margin-bottom: 0"}
-MRes Case Study Report, 2021
-{: style="margin-top:0"}
-
-Decoders for topological quantum error correction
-[\[PDF\]](https://artix41.github.io/assets/pdf/case-study-surface-code.pdf)
-{:.lead style="margin-bottom: 0"}
-Arthur Pesah
-{:.faded style="margin-bottom: 0"}
-MRes Case Study Report, 2020
-{: style="margin-top:0"}
-
-Learning quantum state properties with quantum and classical neural networks 
-[\[PDF\]](http://www.diva-portal.org/smash/get/diva2:1320072/FULLTEXT01.pdf) 
-[\[Code\]](https://github.com/artix41/quantum-polynomial-network)
-{:.lead style="margin-bottom: 0"}
-Arthur Pesah (Supervisors: Peter Wittek and Nathan Killoran)
-{:.faded style="margin-bottom: 0"}
-[Master's Thesis (KTH)](http://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1320072&dswid=-7150), 2019
-{: style="margin-top:0"}
-
-Analytical model of impedance in elliptical beam pipes 
-[\[PDF\]](https://cds.cern.ch/record/2282427/files/cern-summer-student.pdf)
-{:.lead style="margin-bottom: 0"}
-Arthur Pesah (Supervisors: Benoît Salvant, Nicolo Biancacci and Mauro Migliorati)
-{:.faded style="margin-bottom: 0"}
-[CERN Summer Programme Report](https://cds.cern.ch/record/2282427), 2017
 {: style="margin-top:0"}
