@@ -325,7 +325,7 @@ In this post, we have introduced the most important tool to build and analyze qu
 
 In the next post, we will go further in our study of stabilizer codes: we will learn how to find the logical operators, the distance and the number of encoded qubits of a code. The Steane code will continue to serve as our main example throughout the next post.
 
-**Acknowledgment**: Big thanks to Dominik Kufel for his feedback on this blog post!
+**Acknowledgment**: Big thanks to Dominik Kufel and Ren Li for their feedbacks on this blog post!
 {:.message}
 
 ## Appendix: useful tricks to manipulate Pauli operators
