@@ -153,15 +153,15 @@ $$
 \end{aligned}
 $$
 
-meaning that the result of measuring $$\overline{X_1} \overline{X_2}$$ will be $$-1$$. Similarly, the result of measuring $$\overline{X_2} \overline{X_3}$$ will be $$-1$$. However, note that we would have obtained the exact same measurement result if the $$Z$$ error had occurred on qubit $$5$$ or qubit $$6$$. That's our first example of **error degeneracy**: different errors causing the same syndrome. How do we decide where to apply our correction then? The answer is that it doesn't matter: we can choose either of the three middle qubits. To see why, let's look at what happens if we apply $$Z_3$$ to a state affected by the error $$Z_4$$:
+meaning that the result of measuring $$\overline{X_1} \overline{X_2}$$ will be $$-1$$. Similarly, the result of measuring $$\overline{X_2} \overline{X_3}$$ will be $$-1$$. However, note that we would have obtained the exact same measurement result if the $$Z$$ error had occurred on qubit $$5$$ or qubit $$6$$. That's our first example of **error degeneracy**: different errors causing the same syndrome. How do we decide where to apply our correction then? The answer is that it doesn't matter: we can choose either of the three middle qubits. To see why, let's look at what happens if we apply $$Z_5$$ to a state affected by the error $$Z_4$$:
 
 $$
 \begin{aligned}
-Z_3 Z_4 \vert \psi \rangle_{L_2} = \vert \psi \rangle_{L_2}
+Z_5 Z_4 \vert \psi \rangle_{L_2} = \vert \psi \rangle_{L_2}
 \end{aligned}
 $$
 
-It gets us back to the original state! The reason is that any state in the codespace is a +1 eigenstate of $$Z_3 Z_4$$ (as we saw when looking at $$X$$ error detection). The same phenomenon would have happened if we had applied $$Z_6$$, and therefore we can correct the $$Z_4$$ error by applying a $$Z$$ operator on any of the three middle qubits. More generally, any single-qubit $$Z$$ error can be corrected by analyzing the result of the $$\overline{X}_i \overline{X}_{j}$$ measurements. This trick for dealing with error degeneracies is preponderant in quantum error correction, and we will see the most general version of it when looking at decoding stabilizer codes (in the next post).
+It gets us back to the original state! The reason is that any state in the codespace is a +1 eigenstate of $$Z_5 Z_4$$ (as we saw when looking at $$X$$ error detection). The same phenomenon would have happened if we had applied $$Z_6$$, and therefore we can correct the $$Z_4$$ error by applying a $$Z$$ operator on any of the three middle qubits. More generally, any single-qubit $$Z$$ error can be corrected by analyzing the result of the $$\overline{X}_i \overline{X}_{j}$$ measurements. This trick for dealing with error degeneracies is preponderant in quantum error correction, and we will see the most general version of it when looking at decoding stabilizer codes (in the next post).
 
 So our code is able to detect and correct any single-qubit error. But what about errors of higher weight? Or in other words, what is the distance of Shor's code (i.e. the smallest undetectable errors)? Since this is a perfect exercise to see if you've understood this code, I leave this question as an exercise!
 
