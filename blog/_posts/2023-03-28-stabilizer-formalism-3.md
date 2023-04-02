@@ -293,12 +293,22 @@ $$
 \end{aligned}
 $$
 
-Plotting those two probabilities as a function of the error rate, we can see that the first coset always has a higher probability than the second one[^4]:
+Plotting those two probabilities as a function of the error rate, we can see that the first coset always has a higher probability than the second one:
 
 <p style="text-align:center;">
     <img src="/assets/img/blog/stabilizer-formalism-3/coset-probabilities.png" height="350"/>
 </p>
 {:.figure}
+
+This can also be shown analytically by noticing that[^4]
+
+$$
+\begin{aligned}
+    P(\text{coset 1}) - P(\text{coset 2}) = p (1-p) (1-2p)^3 (2p^2 - 2p + 1)
+\end{aligned}
+$$
+
+from which we can deduce that $$P(\text{coset 1}) > P(\text{coset 2})$$ for $$0 < p < \frac{1}{2}$$.
 
 Therefore, both decoding formulations give the first coset as our decoding solution.
 
@@ -357,4 +367,4 @@ $$
 [^1]: See for instance belief propagation defined over GF(4)
 [^2]: qecsim, PanQEC, PyMatching, ldpc, etc.
 [^3]: If you know a bit of abstract algebra, you will notice that our map defines an isomorphism from the Pauli group (modulo the phase) to the group $$(\mathbb{Z}_2^2, +)$$
-[^4]: I have spent a few hours trying to prove this analytically without much success, but if you find a way, please reach out!
+[^4]: Thanks Alex Cliffe for suggesting this proof!
