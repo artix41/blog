@@ -192,7 +192,7 @@ You can notice that this forms a loop! The reason is that when multiplying the p
     Click on faces to add plaquette stabilizers
 </div>
 
-<div id="surface-code-insert-plaquettes" style="margin: auto; display: block; width: 350px; height: 350px">
+<div id="surface-code-insert-plaquettes" style="margin: auto; display: block; max-width: 350px; height: 350px">
 </div>
 
 <div style="text-align: center; margin-bottom: 20px; font-size: 15px">
@@ -252,7 +252,7 @@ What about $$Z$$ stabilizers? They also form loops... if we look at them the rig
     Click on vertices to add vertex stabilizers
 </div>
 
-<div id="surface-code-insert-vertex" style="margin: auto; display: block; width: 350px; height: 350px">
+<div id="surface-code-insert-vertex" style="margin: auto; display: block; max-width: 350px; height: 350px">
 </div>
 
 <div style="text-align: center; margin-bottom: 20px; font-size: 15px">
@@ -368,7 +368,7 @@ So what happens when errors start occurring on our code? Use the panel below to 
     </select>
 </div>
 
-<div id="surface-code-insert-errors" style="margin: auto; display: block; width: 350px; height: 350px">
+<div id="surface-code-insert-errors" style="margin: auto; display: block; max-width: 350px; height: 350px">
 </div>
 
 <div style="text-align: center; margin-bottom: 20px; font-size: 15px">
@@ -720,7 +720,7 @@ The next step is then to show that such a two-loop pattern is always a stabilize
         Click on faces to add plaquette stabilizers
     </div>
 
-    <div id="surface-code-insert-plaquettes-two-loops" style="margin: auto; display: block; width: 350px; height: 350px">
+    <div id="surface-code-insert-plaquettes-two-loops" style="margin: auto; display: block; max-width: 350px; height: 350px">
     </div>
 
     <div style="text-align: center; margin-bottom: 20px; font-size: 15px">
@@ -1300,7 +1300,7 @@ You can play with the matching decoder in the following visualization[^5]:
     </select>
 </div>
 
-<div id="surface-code-decoding-insert-errors" style="margin: auto; display: block; width: 350px; height: 350px">
+<div id="surface-code-decoding-insert-errors" style="margin: auto; display: block; max-width: 350px; height: 350px">
 </div>
 
 <div style="text-align: center; margin-bottom: 20px; font-size: 15px">
@@ -1463,7 +1463,7 @@ If you have started looking at the surface code literature, you might have notic
     </select>
 </div>
 
-<div id="surface-code-rectified-picture" style="margin: auto; display: block; width: 450px; height: 450px">
+<div id="surface-code-rectified-picture" style="margin: auto; display: block; max-width: 450px; height: 450px">
 </div>
 
 <div style="text-align: center; margin-bottom: 20px; font-size: 15px">
@@ -1536,7 +1536,7 @@ We then rotated it and add a few boundary stabilizers. This gives the following 
     </select>
 </div>
 
-<div id="rotated-surface-code" style="margin: auto; display: block; width: 450px; height: 450px">
+<div id="rotated-surface-code" style="margin: auto; display: block; max-width: 450px; height: 450px">
 </div>
 
 <div style="text-align: center; margin-bottom: 20px; font-size: 15px">
