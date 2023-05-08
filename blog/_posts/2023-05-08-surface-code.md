@@ -750,7 +750,7 @@ The next step is then to show that such a two-loop pattern is always a stabilize
         rotated: false
     };
 
-    let gui = new Interface(params, {}, {}, 'https://gui.quantumcodes.io', id);
+    let gui = new Interface(params, {}, keycode, 'https://gui.quantumcodes.io', id);
 
     let button = document.getElementById('button-surface-code-plaquette-two-loops-reset');
     button.onclick = () => gui.removeAllErrors();
@@ -1382,7 +1382,7 @@ Consider the following version of the surface code, where vertex stabilizers on 
         rotated: false
     };
 
-    let gui = new Interface(params, {}, {}, 'https://gui.quantumcodes.io', 'planar-code-lattice');
+    let gui = new Interface(params, {}, keycode, 'https://gui.quantumcodes.io', 'planar-code-lattice');
 
     let button1 = document.getElementById('button-planar-code-random');
     button1.onclick = () => gui.addRandomErrors();
@@ -1483,7 +1483,7 @@ If you have started looking at the surface code literature, you might have notic
         rotated: true
     };
 
-    let gui = new Interface(params, {}, {}, 'https://gui.quantumcodes.io', id);
+    let gui = new Interface(params, {}, keycode, 'https://gui.quantumcodes.io', id);
 
     let button1 = document.getElementById('button-rectified-code-random');
     button1.onclick = () => gui.addRandomErrors();
@@ -1554,7 +1554,7 @@ We then rotated it and add a few boundary stabilizers. This gives the following 
         rotated: true
     };
 
-    let gui = new Interface(params, {}, {}, 'https://gui.quantumcodes.io', 'rotated-surface-code');
+    let gui = new Interface(params, {}, keycode, 'https://gui.quantumcodes.io', 'rotated-surface-code');
 
     let button1 = document.getElementById('button-rotated-code-random');
     button1.onclick = () => gui.addRandomErrors();
