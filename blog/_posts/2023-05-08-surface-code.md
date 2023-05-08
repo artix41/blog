@@ -492,7 +492,7 @@ So that's a fourth equivalence class. Do we have more?
 
 Yes! Loops going around a hole twice are not equivalent to loops going around the hole once. Therefore, for each $$k \in \mathbb{N}$$, we have a new class of loops going around one of the holes $$k$$ times. Since in general loops are given a direction, we can also consider loops going around each hole in the opposite direction and take $$k \in \mathbb{Z}$$. Overall, there are infinitely-many equivalence classes which can be labeled by two integers $$(k_1,k_2) \in \mathbb{Z}^2$$, where each integer indicates how many times the loops go around the corresponding hole. In this notation, the trivial class corresponds to $$(0,0)$$, the blue and red non-trivial loops correspond to $$(0,1)$$ and $$(1,0)$$, and the orange loop corresponds to $$(1,1)$$.
 
-**Exercise 1**: What is the equivalence class of the following (purple) loop?
+**Exercise 1**: What is the equivalence class of the following (purple) loop? [(solution)](#solution-of-the-exercise)
 {:.message}
 <p style="text-align:center; margin-top: 2em; margin-bottom: 2em">
     <img src="/assets/img/blog/surface-code/torus-exercise.png" height="200"/>
@@ -1205,7 +1205,7 @@ Solving this problem exactly is computationally very hard, as it requires calcul
 
 As discussed in my [stabilizer decoding post](/blog/2023-03-28-stabilizer-formalism-3/), the maximum-likelihood decoding problem can also be approximated by solving for the error with the highest probability, instead of the whole coset. Assuming i.i.d. noise, finding the error with the highest probability is equivalent to finding the smallest error that fits the syndrome. In the case of the surface code, this corresponds to matching the excitations with chains of minimum weight.
 
-As it happens, this is completely equivalent to solving a famous graph problem, known as [**minimum-weight perfect matching**](https://en.wikipedia.org/wiki/Maximum_weight_matching)! This problem can be expressed as matching all the vertices of a weighted graph (with an even number of vertices), such that the total weight is maximized. In our case, the graph is constructed as a complete graph with a vertex for each excitation. The weight of each edge between two vertices is then given by the Manhattan distance between the two corresponding excitations. For instance, let's consider the following decoding problem:
+As it happens, this is completely equivalent to solving a famous graph problem, known as [**minimum-weight perfect matching**](https://en.wikipedia.org/wiki/Maximum_weight_matching)! This problem can be expressed as matching all the vertices of a weighted graph (with an even number of vertices), such that the total weight is minimized. In our case, the graph is constructed as a complete graph with a vertex for each excitation. The weight of each edge between two vertices is then given by the Manhattan distance between the two corresponding excitations. For instance, let's consider the following decoding problem:
 
 <!-- <div id="surface-code-matching" style="display: block; margin: auto; width: 400px; height: 400px">
 </div>
@@ -1288,7 +1288,7 @@ From there, we can deduce our decoding solution:
 
 It happens that minimum-weight perfect-matching can be solved in polynomial time using the [Blossom algorithm](https://en.wikipedia.org/wiki/Blossom_algorithm), which has a worst-case complexity of $$O(n^3)$$. While this complexity might seem quite high, a [recent modification](https://arxiv.org/abs/2303.15933) of the Blossom algorithm, proposed by Oscar Higgott and Craig Gidney, seems to have an average complexity of $$O(n)$$. It also generalizes very well to the imperfect syndrome case, making it one of the best decoders out there in terms of trade-off between speed and performance (the performance will be reviewed when talking about thresholds in the last section of the post).
 
-You can play with the matching decoder in the following visualization:
+You can play with the matching decoder in the following visualization[^5]:
 
 <div style="text-align: center; margin-bottom: 10px; color: gray; font-size: 15px">
     Click on edges to add
@@ -1346,7 +1346,7 @@ You can play with the matching decoder in the following visualization:
 
 There are many other surface code decoders out there with their own pros and cons, such as [union-find](https://arxiv.org/abs/1709.06218), [neural network-based decoders](https://arxiv.org/abs/1811.12456), [belief propagation](https://arxiv.org/abs/2005.07016), etc. Describing them all in detail is out of scope for this blog post, but I hope to write a separate post one day dedicated to decoding. I also haven't talked much about the decoding problem for imperfect syndrome, which I also leave for a separate blog post.
 
-Let's now answer a question that you might have been wondering this whole time: how the hell do we implement a toric lattice in practice? While it's in principle possible to implement an actual torus with Rydberg atoms for instance, it's impractical for many quantum computing architecture. Fortunately, there exists a purely planar version of the surface code, that we will discuss now!
+Let's now answer a question that you might have been wondering this whole time: how the hell do we implement a toric lattice in practice? While it's in principle possible to implement an actual torus experimentally (for example with [cold atoms](https://www.nature.com/articles/s41586-018-0450-2/figures/2)), it's impractical for many quantum computing architecture. Fortunately, there exists a purely planar version of the surface code, that we will discuss now!
 
 ## Surface code with open boundaries
 
@@ -1600,7 +1600,7 @@ We often make the distinction between three types of noise models:
 
 The code-capacity threshold is the easiest to estimate, both in terms of implementation time and computational time, and allows to get a rough idea of the performance of a given code or decoder. The phenomenological threshold gets us closer to the true threshold value and can be useful when comparing decoders that deal with measurement errors in interesting ways (such as single-shot decoders). Finally, circuit-level thresholds are the most realistic ones and approximate the most accurately the actual noise level that experimentalists need to reach to make error correction work with a given code. While circuit-level thresholds have been considered very hard to estimate for a long time, mainly due to the lack of very fast noisy Clifford circuit simulators, recent tools such as Stim have made those simulations much less cumbersome.
 
-For each of those three models, we also need to specify the distribution of $$X$$, $$Y$$ and $$Z$$ errors[^5]. There are two very common choices here. The first is the depolarizing noise model, in which those three Paulis are assumed to occur with the same probability. Since $$Y$$ is made of $$X$$ and $$Z$$, it means that $$P(Y)=P(X,Z) \neq P(X)P(Z)$$, or in other words, $$X$$ and $$Z$$ are correlated. Another noise model is the independent $$X/Z$$ model, in which $$X$$ and $$Z$$ are independent and occur with the same probability. The probability of getting $$Y$$ errors is fixed as $$P(Y)=P(X)P(Z)=P(X)^2$$ and is therefore lower than for depolarizing noise.
+For each of those three models, we also need to specify the distribution of $$X$$, $$Y$$ and $$Z$$ errors[^6]. There are two very common choices here. The first is the depolarizing noise model, in which those three Paulis are assumed to occur with the same probability. Since $$Y$$ is made of $$X$$ and $$Z$$, it means that $$P(Y)=P(X,Z) \neq P(X)P(Z)$$, or in other words, $$X$$ and $$Z$$ are correlated. Another noise model is the independent $$X/Z$$ model, in which $$X$$ and $$Z$$ are independent and occur with the same probability. The probability of getting $$Y$$ errors is fixed as $$P(Y)=P(X)P(Z)=P(X)^2$$ and is therefore lower than for depolarizing noise.
 
 Regarding the decoders, we will consider two of them here for simplicity: the maximum-likelihood decoder, and the matching decoder. As it happens, the code-capacity threshold for the maximum likelihood decoder corresponds exactly to the phase transition of a certain statistical mechanics model. This *stat mech mapping* was established in [Dennis et al.](https://arxiv.org/abs/quant-ph/0110143) (probably the most cited paper of quantum error correction) in 2002. For the surface code subjected to independent $$X/Z$$ errors, the equivalent stat mech model is the random-bond Ising model, whose phase transition had just been calculated at that time. They were therefore able to give this first surface code threshold without doing any simulation themselves!
 
@@ -1638,11 +1638,17 @@ In the meantime, one direct follow-up from this post is [Dominik Kufel's post](h
 
 ## Solution of the exercise
 
-
-**Exercise**: What are the $$[[n,k,d]]$$ parameters of a surface code with lattice size $$L$$? [(Back to section)](#logical-operators-and-topology)
+**Exercise 1**: What is the equivalence class of the following (purple) loop? [(Back to section)](#loops-on-a-smooth-manifold)
+{:.message}
+<p style="text-align:center; margin-top: 2em; margin-bottom: 2em">
+    <img src="/assets/img/blog/surface-code/torus-exercise.png" height="200"/>
+</p>
+**Correction**: The loops goes once around the middle hole, and three times around the hole forming the inside of the donut. Therefore, it belongs to coset labelled by $$(1,3)$$.
 {:.message}
 
-<br>
+**Exercise 2**: What are the $$[[n,k,d]]$$ parameters of a surface code with lattice size $$L$$? [(Back to section)](#loops-on-the-surface-code)
+{:.message}
+
 **Correction**: Since there are $$L^2$$ horizontal and $$L^2$$ vertical edges, we have $$n=2L^2$$. Then, we saw that there are exactly two non-equivalent types of logical operators, meaning that there are $$k=2$$ qubits. Finally, the distance is the minimum size of a logical operator, which in our case is $$d=L$$. Therefore, the surface code is a $$[[2L^2, 2, L]]$$-code.
 {:.message}
 
@@ -1650,4 +1656,5 @@ In the meantime, one direct follow-up from this post is [Dominik Kufel's post](h
 [^2]: The final version of this embedding is just a few lines of Javascript, which use [gui.quantumcodes.io](gui.quantumcodes.io) as an API. So if **you** would like to embed some codes (both 2D and 3D) in your website, feel free to contact me and I'll give you the instructions to do it (I might add an official tutorial in the PanQEC documentation later).
 [^3]: For the interested reader, the rigorous definition is that two loops are equivalent if there exists a **homotopy** between them. More precisely, we can define a loop as a continuous map $$\ell: S^1 \rightarrow \mathcal{M}$$ (an embedding of the circle onto the manifold). A homotopy between two loops $$\ell_1, \ell_2$$ is then a continuous function $$L:S^1 \times [0,1] \rightarrow \mathcal{M}$$ such that $$L(\cdot, 0)=\ell_1$$ and $$L(\cdot, 1)=\ell_2$$. In other words, each $$L(\cdot, t)$$ for $$t \in [0,1]$$ defines a different loop on the path from $$\ell_1$$ to $$\ell_2$$. The equivalence relation defined here is called **homotopy equivalence**, and is one of the most important notions of equivalence in topology (along with another one called **homological equivalence**).
 [^4]: [Rotor codes](https://arxiv.org/abs/2303.13723) are example of such continuous-variable codes.
-[^5]: We assume here that we have a Pauli error model. The reasons for this choice are actually quite technical and I hope to write a post about it one day. In the meantime, you can have a look at Section 10.3 of Nielsen & Chuang to get an idea of the argument.
+[^5]: The backend is using [PyMatching](https://github.com/oscarhiggott/PyMatching), Oscar Higgott's fast implementation of minimum-weight perfect matching.
+[^6]: We assume here that we have a Pauli error model. The reasons for this choice are actually quite technical and I hope to write a post about it one day. In the meantime, you can have a look at Section 10.3 of Nielsen & Chuang to get an idea of the argument.
