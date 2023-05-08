@@ -565,8 +565,8 @@ How can we apply what we have learned to the surface code? Compared to general s
     drawImage(gui, id, true);
 </script> -->
 
-<img src="/assets/img/blog/surface-code/surface-code-equivalent-loops-1.png" style="display: block; float: left"/>
-<img src="/assets/img/blog/surface-code/surface-code-equivalent-loops-2.png" style="display: block; float: right"/>
+<img src="/assets/img/blog/surface-code/surface-code-equivalent-loops-1.png" style="display: block; float: left;"/>
+<img src="/assets/img/blog/surface-code/surface-code-equivalent-loops-2.png" style="display: block; float: right;"/>
 
 <div style="clear: both"></div>
 
@@ -727,12 +727,14 @@ The next step is then to show that such a two-loop pattern is always a stabilize
         <button id='button-surface-code-plaquette-two-loops-reset'>Remove all plaquettes</button>
     </div>
 </div>
+
+<!-- Hidden text for positioning-->
 <div style="float: right">
     <div style="text-align: center; margin-bottom: 10px; visibility: hidden; font-size: 15px">
         Click on faces to add plaquette stabilizers
     </div>
-    <img src="/assets/img/blog/surface-code/surface-code-two-loops.png"/>
 </div>
+<img src="/assets/img/blog/surface-code/surface-code-two-loops.png" style="float: right"/>
 
 <div style="clear: both"></div>
 
@@ -1102,7 +1104,7 @@ So the error must be a string that links those two excitations. However, the num
 <img src="/assets/img/blog/surface-code/surface-code-decoding-2.png" style="display: block; float: right"/>
 <img src="/assets/img/blog/surface-code/surface-code-decoding-3.png" style="display: block; float: right"/>
 
-<!-- <div style="clear: both"></div> -->
+<div style="clear: both"></div>
 
 Let's suppose that the leftmost pattern was our actual error, but we chose the middle pattern instead as our correction operator. This is what the final pattern, corresponding to the error (red) plus the correction operator (yellow), would look like:
 
@@ -1360,7 +1362,7 @@ Consider the following version of the surface code, where vertex stabilizers on 
     </select>
 </div>
 
-<div id="planar-code-lattice" style="margin: auto; display: block; width: 450px; height: 450px">
+<div id="planar-code-lattice" style="margin: auto; display: block; max-width: 450px; height: 450px">
 </div>
 
 <div style="text-align: center; margin-bottom: 20px; font-size: 15px">
