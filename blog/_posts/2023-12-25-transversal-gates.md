@@ -1,7 +1,7 @@
 ---
 title: "Computing with quantum codes using transversal gates"
 tags: [quantum-computing]
-image: /assets/img/blog/transversal-gates/thumbnail.png
+image: /assets/img/blog/transversal-gates/thumbnail.png?4362984378
 description: >
 comments: true
 related_posts:
