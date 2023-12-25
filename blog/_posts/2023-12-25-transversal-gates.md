@@ -1,5 +1,5 @@
 ---
-title: "Computing with quantum codes I: transversal gates"
+title: "Computing with quantum codes using transversal gates"
 tags: [quantum-computing]
 image: /assets/img/blog/transversal-gates/thumbnail.png
 description: >
