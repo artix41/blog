@@ -279,7 +279,7 @@ In this post, we looked at the definition of logical gates—operations that pre
 
 However, despite this abundance of more complicated techniques to implement logical gates, research in transversal gates is still very much active and many open questions remain to be answered. In particular, with the recent rise of new qubit architectures which are not constrained by locality and of new LDPC codes which exploit this non-locality to drastically improve the (asymptotic) qubit overhead of quantum codes, transversal gates are becoming popular again. For instance, implementing a CNOT transversally by moving qubits that are far away close to each other could be less costly than performing lattice surgery (which involves the use some ancilla patches). But all the transversal gates of those LDPC codes have very much not been figured out. Only recently have the [first codes with a constant rate and some transversal non-Clifford gates](https://arxiv.org/abs/2310.16982) been found. Finding non-Clifford transversal gates on good LDPC codes (i.e. with a constant rate AND a linear distance) with extensive addressability (i.e. where logical gates could be implemented on all logical qubits, or pairs of logical qubits, individually) could result in very low-overhead fault-tolerant architectures.
 
-**Acknowledgment**: Big thanks to Asmae Benhemou for her feedbacks on this post!
+**Acknowledgment**: Big thanks to Asmae Benhemou and George Umbrarescu for their feedbacks on this post!
 {:.message}
 
 ## Solution of the exercise
