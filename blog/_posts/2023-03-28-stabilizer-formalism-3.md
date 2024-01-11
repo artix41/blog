@@ -208,7 +208,7 @@ $$
 \end{aligned}
 $$
 
-Indeed, each component of the syndrome tells us whether a given stabilizer commutes with the error.
+Indeed, each component of the syndrome tells us whether a given stabilizer commutes with the error, i.e. $$s_i=0$$ if $$\bm{e}$$ and $$\bm{H}_i$$ commute, $$s_i=1$$ if they anticommute.
 Note that this is the same equation as the classical one, with the matrix product replaced by the symplectic product.
 Now, we saw that for classical parity-check matrices, we had $$\bm{H} \bm{x} = \bm{0}$$ for every codeword $$\bm{x}$$. However, we don't really have "codewords" in quantum error correction. So what would be the equivalent of $$\bm{x}$$ in this equation, or in other words, what is the kernel of $$\bm{H}$$? Any guess?
 
