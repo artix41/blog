@@ -239,7 +239,7 @@ if and only if $$\bm{y}$$ is a codeword. In other words, the space of codewords 
 $$
 \begin{aligned}
     a + b + d + z_1 = 0 \\
-    a + b + c + z_2 = 0 \\
+    a + c + d + z_2 = 0 \\
     b + c + d + z_3 = 0
 \end{aligned}
 $$
@@ -295,7 +295,7 @@ The new vector $$\bm{s} = \bm{H} \bm{e}$$ has dimension $$m$$ and is called the 
 $$
 \begin{aligned}
     a + b + d + z_1 = s_1 \\
-    a + b + c + z_2 = s_2 \\
+    a + c + d + z_2 = s_2 \\
     b + c + d + z_3 = s_3
 \end{aligned}
 $$
@@ -305,7 +305,7 @@ The following table shows the bit we choose to correct for each of the 8 possibl
 
 | Syndrome   | **000**       | **001** | **010** | **011** | **100** | **101** | **110** | **111** |
 |:----------:|:-------------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|
-| Correction | $$\emptyset$$ | $$z_1$$ | $$z_2$$ | $$c$$   | $$z_3$$ | $$b$$   | $$a$$   | $$d$$   |
+| Correction | $$\emptyset$$ | $$z_3$$ | $$z_2$$ | $$c$$   | $$z_1$$ | $$b$$   | $$a$$   | $$d$$   |
 {:.stretch-table}
 
 A visual way to construct the parity-check matrix is through the **Tanner graph** of the code. The Tanner graph is a bipartite graph containing two types of nodes, the data nodes (one for each bit of the codeword) and the check nodes (one for each bit of the syndrome). A check node $$i$$ and a data node $$j$$ are connected if the syndrome bit $$s_i$$ depends on $$x_j$$. The figure below represents the Tanner graph of the Hamming code. The parity-check matrix is then simply the adjacency matrix of the Tanner graph, i.e. it has a $$1$$ at row $$i$$ and column $$j$$ if the check node $$i$$ is connected to the data node $$j$$, and $$0$$ otherwise.
