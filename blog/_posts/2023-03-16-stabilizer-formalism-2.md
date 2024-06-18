@@ -28,8 +28,7 @@ $$
 Relabelling $$\vert a_1\rangle$$ as $$ \vert 00\rangle_L$$, $$\vert a_2\rangle$$ as $$ \vert 01\rangle_L$$, etc. shows that the space corresponds to a two-qubit space.
 
 So what we really need to compute is the dimension of $$\mathcal{C}$$ for a stabilizer code.
-Let $$n$$ denote the number of physical qubits of our code, and $$m$$ the number of generators of the stabilizer group (i.e. there are $$m$$ independent elements whose products generate the whole group).
-The dimension of the physical Hilbert space is $$2^n$$, and each constraint $$S_i \vert \psi \rangle = \vert \psi \rangle$$ divides this dimension by two. Indeed, each $$S_i$$ has two eigenvalues with the same multiplicity, $$+1$$ and $$-1$$, dividing the physical Hilbert space into two eigenspaces of equal dimension. Therefore, we have
+Let $$n$$ denote the number of physical qubits of our code, and $$m$$ the number of generators of the stabilizer group (i.e. there are $$m$$ independent elements whose products generate the whole group). The dimension of the codespace is then given by
 
 $$
 \begin{aligned}
@@ -37,8 +36,17 @@ $$
 \end{aligned}
 $$
 
-and the number of logical qubits is $$k=n-m$$.
-This should remind you of classical codes, where the same formula applies when $$m$$ is the number of independent parity checks.
+and the number of logical qubits is therefore $$k=n-m$$. This should remind you of classical codes, where the same formula applies when $$m$$ is the number of independent parity checks.
+
+Intuitively, the argument goes as follow: the dimension of the physical Hilbert space is $$2^n$$, and each independent constraint $$S_i \vert \psi \rangle = \vert \psi \rangle$$ divides this dimension by two. For instance, let's start with the full space and consider an arbitrary stabilizer $$S_i$$. It has two eigenvalues, $$+1$$ and $$-1$$, with the same multiplicity (since the trace of a Pauli operator is always zero), dividing the physical Hilbert space into two eigenspaces of equal dimension. We then need to show that the next stabilizer we choose divides this new space into two as well, etc. Let's prove this rigorously through the following exercise.
+
+**Exercise 1**: Let $$\Pi_{\mathcal{C}}=\frac{1}{2^m} (1+S_1)\ldots (I+S_m)$$ \\
+**(a)** Show that $$\Pi_{\mathcal{C}}$$ is a projector onto the codespace, that is, $$\Pi_{\mathcal{C}} |\psi\rangle=|\psi\rangle$$ if $$|\psi\rangle \in \mathcal{C}$$, and $$\Pi_{\mathcal{C}} |\psi\rangle=0$$ if $$|\psi\rangle \in \mathcal{C}^\perp$$. \\
+**(b)** Show that we can rewrite this projector as $$\Pi_{\mathcal{C}}=\frac{1}{2^m}\sum_{S \in \mathcal{S}} S$$, where $$\mathcal{S}$$ is the full stabilizer group. \\
+**(c)** Show that $$\text{Tr}[\Pi_\mathcal{C}]=\text{dim}(\mathcal{C})$$ \\
+**(d)** Deduce that $$\text{dim}(\mathcal{C})=2^{n-m}$$ \\
+[(solution)](#solution-of-the-exercises)
+{:.message}
 
 Let's apply this formula to the Steane code. As a reminder, the Steane code is a $$7$$-qubit code defined on the following lattice, such that each face (also called *plaquette*) supports an $$X$$ and a $$Z$$ stabilizer generator:
 
@@ -65,7 +73,7 @@ $$L^{\dagger} SL \in \mathcal{S}$$ for all $$S \in \mathcal{S}$$.
 
 Note that this is precisely the definition of the **normalizer** of the group $$\mathcal{S}$$, denoted $$\mathcal{N}(\mathcal{S})$$, and you will often find logical gates defined in the literature as elements of the normalizer of the stabilizer group. This proposition explains why those two definitions are equivalent, and proving it is a cute little exercise that I encourage you to try on your own before reading the solution at the end of this post.
 
-**Exercise 1**: Prove Proposition 1 [(solution)](#solution-of-the-exercises)
+**Exercise 2**: Prove Proposition 1 [(solution)](#solution-of-the-exercises)
 {:.message}
 
 Let's apply this to the Steane code. For instance, let's consider the operator $$H_L=H^{\otimes 7}$$ consisting of applying a Hadamard gate on all the physical qubits:
@@ -92,7 +100,7 @@ where $$S^Z_r$$ is the $$Z$$ red plaquette. Therefore, $$H_L$$ maps the $$X$$ re
 Note that we haven't shown that $$H_L$$ actually corresponds to a logical Hadamard, i.e. that it maps $$\vert \overline{0} \rangle$$ to $$\vert \overline{+} \rangle$$ and $$\vert \overline{1} \rangle$$ to $$\vert \overline{-} \rangle$$. The easiest way to show that is by proving that $$H_L$$ maps the logical $$X$$ operator to the logical $$Z$$ operator, and vice-versa.
 The next step is therefore to get a grasp of the Pauli logical operators. But before that, feel free to try the following exercise to check your understanding of logical gates:
 
-**Exercise 2**: Show that $$S_L=S^{\otimes 7}$$ is a logical gate [(solution)](#solution-of-the-exercises)
+**Exercise 3**: Show that $$S_L=S^{\otimes 7}$$ is a logical gate [(solution)](#solution-of-the-exercises)
 {:.message}
 
 ## Pauli logicals
@@ -130,7 +138,7 @@ As it happens, this is just a matter of convention. There is no preferred $$\ver
 
 Therefore, as it is usually done with stabilizer codes, let's **define** $$\vert 0 \rangle_L$$ and $$\vert 1 \rangle_L$$ as the two eigenstates of $$Z_L$$, and $$\vert + \rangle_L$$ and $$\vert - \rangle_L$$ as the two eigenstates of $$X_L$$. This is a valid choice since $$X_L$$ and $$Z_L$$ anticommute, and this also fixes the logical $$Y$$ operator as $$Y_L=X_LZ_L$$. All the other logical gates are also fixed by how they transform those Pauli operators. For instance, you are now ready to prove that the logical gate $$H_L$$ actually acts as a logical Hadamard gate.
 
-**Exercise 3**: Show that $$H_L=H^{\otimes 7}$$ acts as a logical Hadamard gate [(solution)](#solution-of-exercises)<br>
+**Exercise 4**: Show that $$H_L=H^{\otimes 7}$$ acts as a logical Hadamard gate [(solution)](#solution-of-exercises)<br>
 *(**Hint**:  show that $$H_L X_L H_L=Z_L$$ and $$H_L Z_L H_L=X_L$$)*
 {:.message}
 
@@ -170,7 +178,7 @@ In other words, a coset is a set of equivalent logicals.
 Any element $$P \in \bar{L}$$ is called a **representative** of the coset $$\bar{L}$$.
 For instance, any of the three $$X$$ logicals of the figure above are representative of the coset $$\bar{X}$$ of $$X$$ logicals. Note that since the Steane code has only one qubit, all the $$X$$ logicals are equivalent and there is only one coset of $$X$$ logicals.
 
-Let's remember a few important properties of equivalence classes. First of all, they **partition** the set of logical operators, that is, they are all disjoint (i.e. have an empty intersection) and their union is the whole set. In the case of the Steane code, this can be written[^1]:
+Let's remember a few important properties of equivalence classes. First of all, they **partition** the set of logical operators, that is, they are all disjoint (i.e. have an empty intersection) and their union is the whole set. In the case of the Steane code, this can be written[^2]:
 
 $$
 \begin{aligned}
@@ -192,7 +200,22 @@ In the next and last part of this trilogy, we will see how to formulate the stab
 
 ## Solution of the exercises
 
-**Exercise 1**: Prove that a unitary $$L$$ is a logical gate if and only if it maps the stabilizer group $$\mathcal{S}$$ to itself, i.e.
+**Exercise 1**: Let $$\Pi_{\mathcal{C}}=\frac{1}{2^m} (I+S_1)\ldots (I+S_m)$$ \\
+**(a)** Show that $$\Pi_{\mathcal{C}}$$ is a projector onto the codespace, that is, $$\Pi_{\mathcal{C}} |\psi\rangle=|\psi\rangle$$ if $$|\psi\rangle \in \mathcal{C}$$, and $$\Pi_{\mathcal{C}} |\psi\rangle=0$$ if $$|\psi\rangle \in \mathcal{C}^\perp$$. \\
+**(b)** Show that we can rewrite this projector as $$\Pi_{\mathcal{C}}=\frac{1}{2^m}\sum_{S \in \mathcal{S}} S$$, where $$\mathcal{S}$$ is the full stabilizer group. \\
+**(c)** Show that $$\text{Tr}[\Pi_\mathcal{C}]=\text{dim}(\mathcal{C})$$ \\
+**(d)** Deduce that $$\text{dim}(\mathcal{C})=2^{n-m}$$
+<br><br>
+**Correction**:
+**(a)** Let's show that each operator $$\frac{1}{2}(I+S_i)$$ is a projector onto the space stabilized by $$S_i$$. If $$|\psi\rangle$$ is stabilized by $$S_i$$, we have $$\frac{1}{2}(I+S_i)|\psi\rangle=\frac{1}{2}|\psi\rangle+\frac{1}{2}S_i|\psi\rangle=\frac{1}{2}|\psi\rangle+\frac{1}{2}|\psi\rangle=|\psi\rangle$$. If $$|\psi\rangle$$ is in the orthogonal complement of this space, it means that $$S_i|\psi\rangle=-|\psi\rangle$$, and therefore $$\frac{1}{2}(I+S_i)|\psi\rangle=\frac{1}{2}|\psi\rangle+\frac{1}{2}S_i|\psi\rangle=\frac{1}{2}|\psi\rangle-\frac{1}{2}|\psi\rangle=0$$. The product of those operators is therefore a projector onto the space stabilized by all the stabilizers. \\
+**(b)** There are exactly $$2^m$$ elements in the group $$\mathcal{S}$$, each defined by the choice of the generators to include in the stabilizers. This is due to the independence of the generators, meaning that their products always defines a new stabilizer. When developing the expression of $$\Pi_\mathcal{C}$$, we therefore get all the elements of the stabilizer group exactly once in the sum. \\
+**(c)** The eigenvalues of $$\Pi_{\mathcal{C}}$$ are $$1$$ and $$0$$, with the multiplicity of $$1$$ corresponding to the dimension of the codespace (since $$\Pi_{\mathcal{C}}$$ projects onto the codespace). The trace is therefore exactly this dimension. \\
+**(d)** Taking the trace on both sides, we get $$\text{dim}(\mathcal{C})=\frac{1}{2^m}\sum_{S \in \mathcal{S}} \text{Tr}[S]$$. Since all stabilizers are Paulis, their trace is zero except for the identity element, for which it is $$2^n$$ (the total dimension of the space). Therefore, the sum is equal to $$2^n$$ and we recover the desired formula.
+<br>
+[(Back to section)](#logical-gates)
+{:.message}
+
+**Exercise 2**: Prove that a unitary $$L$$ is a logical gate if and only if it maps the stabilizer group $$\mathcal{S}$$ to itself, i.e.
 $$L^{\dagger} SL \in \mathcal{S}$$ for all $$S \in \mathcal{S}$$.
 <br><br>
 **Correction**: For the first direction, let's suppose that $$L$$ is a logical gate, i.e. $$L$$ maps the codespace to itself.
@@ -202,7 +225,7 @@ For the other direction, let's suppose that $$L \in \mathcal{N}(\mathcal{S})$$, 
 [(Back to section)](#logical-gates)
 {:.message}
 
-**Exercise 2**: Show that $$S_L=S^{\otimes 7}$$ is a logical gate
+**Exercise 3**: Show that $$S_L=S^{\otimes 7}$$ is a logical gate
 <br><br>
 **Correction**: Remember that the $$S$$ gate turns $$X$$ into $$Z$$ and $$Z$$ into itself.
 Let's pick any $$X$$ plaquette. Applying $$S_L$$ turns $$X^{\otimes 4}$$ into $$Y^{\otimes 4}$$.
@@ -213,7 +236,7 @@ Thus, $$S_L$$ maps stabilizers to stabilizers and forms a logical gate.
 [(Back to section)](#logical-gates)
 {:.message}
 
-**Exercise 3**: Show that $$H_L=H^{\otimes 7}$$ acts as a logical Hadamard gate<br>
+**Exercise 4**: Show that $$H_L=H^{\otimes 7}$$ acts as a logical Hadamard gate<br>
 *(**Hint**:  show that $$H_L X_L H_L=Z_L$$ and $$H_L Z_L H_L=X_L$$)*
 <br><br>
 **Correction**: Consider the logical $$X$$ operator $$X_L=X^{\otimes 3}$$ acting on qubits $$5,6,7$$.
