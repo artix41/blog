@@ -2,11 +2,31 @@
 title: Publications
 ---
 
+Quantum Rainbow Codes
+ [\[PDF\]](https://arxiv.org/pdf/2408.13130.pdf)
+{:.lead style="margin-bottom: 0"}
+Thomas R. Scruby, Arthur Pesah, Mark Webster
+{:.faded style="margin-bottom: 0"}
+[arXiv:2408.13130](https://arxiv.org/abs/2408.13130), 2024
+{: style="margin-top:0"}
+
+Domain Wall Color Code
+ [\[PDF\]](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.133.110601)
+{:.lead style="margin-bottom: 0"}
+Konstantin Tiurev, Arthur Pesah, Peter-Jan H. S. Derks, Joschka Roffe, Jens Eisert, Markus S. Kesselring, Jan-Michael Reiner
+{:.faded style="margin-bottom: 0"}
+Physical Review Letters, 2024
+{: style="margin-top:0; margin-bottom:0"}
+[arXiv:2307.00054](https://arxiv.org/abs/2307.00054), 2023
+{: style="margin-top:0"}
+
 Tailoring Three-Dimensional Topological Codes for Biased Noise
  [\[PDF\]](https://arxiv.org/pdf/2211.02116.pdf)
 {:.lead style="margin-bottom: 0"}
 Eric Huang & Arthur Pesah, Christopher T. Chubb, Michael Vasmer, Arpit Dua
 {:.faded style="margin-bottom: 0"}
+PRX Quantum, 2023
+{: style="margin-top:0; margin-bottom:0"}
 [arXiv:2111.03935](https://arxiv.org/abs/2211.02116), 2022
 {: style="margin-top:0"}
 
