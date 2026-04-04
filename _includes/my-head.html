@@ -11,3 +11,21 @@ Fill in `href`. You may have to adjust `rel`.
 -->
 <noscript><link href="<path/to/content.css>" rel="stylesheet"></noscript>
 {% endcomment %}
+
+<script>
+	window.MathJax = {
+		loader: { load: ['[tex]/physics', '[tex]/boldsymbol'] },
+		tex: {
+			inlineMath: [['\\(', '\\)']],
+			displayMath: [['$$', '$$'], ['\\[', '\\]']],
+			packages: { '[+]': ['physics', 'boldsymbol'] },
+			macros: {
+				bm: ['\\boldsymbol{#1}', 1]
+			}
+		},
+		options: {
+			skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		}
+	};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>

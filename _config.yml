@@ -340,6 +340,8 @@ replace_img:
   replacement:         |
     <hy-img root-margin="511px" %{attrs}><img %{attrs}></hy-img>
 
+markdown: kramdown
+
 kramdown:
   footnote_backlink:   '&#x21a9;&#xfe0e;'
   math_engine:         mathjax
