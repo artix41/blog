@@ -8,7 +8,7 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-ruby "2.7.5"
+ruby ">= 3.3.6"
 
 gem "jekyll"
 

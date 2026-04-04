@@ -41,7 +41,7 @@
   }
 
   @media (min-width: $break-point-dynamic) {
-    $r28: ($content-width-5 / 2) + $content-margin-5;
+    $r28: calc($content-width-5 / 2) + $content-margin-5;
     body::before { width: calc(50% - #{$r28}); }
   }
 }
@@ -57,7 +57,7 @@ html {
 }
 
 
-// @media print { html { font-size: $root-font-size-print; } } 
+// @media print { html { font-size: $root-font-size-print; } }
 .fade-in {
   animation-duration: 500ms;
   animation-timing-function: ease;

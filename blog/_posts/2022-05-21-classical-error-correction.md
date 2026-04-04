@@ -107,7 +107,7 @@ $$
 
 where $$z = a + b + c \; (\text{mod} \; 2)$$. We call $$z$$ a **parity-check bit**, as it indicates whether there is an even or an odd number of $$1$$s in the sum ($$z=0$$ for even and $$z=1$$ for odd). As an exercise, try to write the different codewords corresponding to this encoding map!
 
-Now, we can show that any single error can be detected by this code. Indeed, if one of the bits $$a, b, c$$ gets flipped, the parity of the three bits will be reversed, and we won't have $$z=a + b + c \; (\text{mod} \; 2)$$ anymore, indicating that an error have occurred. Similarly, if $$z$$ gets flipped, it won't correspond to the parity of $$a,b,c$$ anymore and we will detect an error.
+Now, we can show that any single error can be detected by this code. Indeed, if one of the bits $$a, b, c$$ gets flipped, the parity of the three bits will be reversed, and we won't have $$z=a + b + c \; (\text{mod} \; 2)$$ anymore, indicating that an error have occurred. Similarly, if $$z$$ gets flipped, it won't correspond to the parity of $$a,b,c$$ anymore, and we will detect an error.
 
 However, there is no way to know *where* the error has occurred using this code, or in other words, errors are not correctable. The genius of Hamming was to find a way to use parity checks to actually know the position of the error!
 
@@ -121,7 +121,7 @@ $$
 \end{aligned}
 $$
 
-where the sum is taken modulo 2 (we will consider all the sums of bits to be modulo 2 from now on, without explicitely writing $$\mod 2$$). Those variables indicate the parity of different chunks of our message, as illustrated here:
+where the sum is taken modulo 2 (we will consider all the sums of bits to be modulo 2 from now on, without explicitly writing $$\mod 2$$). Those variables indicate the parity of different chunks of our message, as illustrated here:
 
 ![](/assets/img/blog/classical-error-correction/hamming-code.png)
 {:.figure}
@@ -223,7 +223,7 @@ $$
 
 Two important remarks about generator matrices:
 
-1. Elementary operations on the rows and columns of $$\bm{G}$$ don't change the code. Indeed, the code is defined as the image of $$G$$, which is invariant under similarity transformations. Using Gaussian reduction, it is therefore always possible to transform $$\bm{G}$$ to have the form $$\bm{G}=\left(\begin{matrix} I_k \\ \hline \bm{A}  \end{matrix} \right)$$. In other words, any linear code can be seen as a message supplemented with parity checks!
+1. Elementary operations on the rows and columns of $$\bm{G}$$ don't change the code. Indeed, the code is defined as the image of $$G$$, which is invariant under similarity transformations. Using Gaussian reduction, it is therefore always possible to transform $$\bm{G}$$ to have the form $$\bm{G}=\left(\begin{matrix} I_k \\ \hline \bm{A} \end{matrix} \right)$$. In other words, any linear code can be seen as a message supplemented with parity checks!
 2. The codewords of a code described by $$\bm{G}$$ can be found by taking all the linear combinations of the columns of $$\bm{G}$$ (the vector $$\bm{x}$$ in the definition indicates which columns you select or not). Therefore, to find all the codewords, just calculate all the $$\bm{y}$$ of the form $$\bm{y}=a_1 \bm{c_1} + ... a_k \bm{c_k}$$ where $$\bm{c_i}$$ is the $$i^{\th}$$ column of $$G$$ and $$a_1,...a_k \in \{0,1\}$$.
 
 An equivalent picture to describe linear codes is through the **parity-check matrix**, defined as an $$m \times n$$ matrix $$\bm{H}$$ such that
@@ -314,7 +314,7 @@ A visual way to construct the parity-check matrix is through the **Tanner graph*
 Tanner graph of the Hamming code. The top nodes represent the codeword bits and the bottom nodes the syndrome bits, with an edge whenever a codeword bit is involved in the definition of a syndrome bit.
 {:.figure}
 
-In quantum error correction, the syndrome can be measured without disturbing the state (through the so-called stabilizer measurements), which makes the theory of linear codes easily transferable to the quantum domain. While quantum codewords can be complicated superpositions in the Hilbert space, errors are simple vectors of size $$n$$ (the number of qubits), making the calculation of the syndrome $$\bm{s}=\bm{H} \bm{e}$$ straightforward using the the parity-check matrix, and it is indeed used extensively in simulations.
+In quantum error correction, the syndrome can be measured without disturbing the state (through the so-called stabilizer measurements), which makes the theory of linear codes easily transferable to the quantum domain. While quantum codewords can be complicated superpositions in the Hilbert space, errors are simple vectors of size $$n$$ (the number of qubits), making the calculation of the syndrome $$\bm{s}=\bm{H} \bm{e}$$ straightforward using the parity-check matrix, and it is indeed used extensively in simulations.
 
 In the next section, we will study the problem of decoding linear codes in general, i.e. correcting the errors using the syndrome information. But before that, you can try to solve the following exercises to make sure you understand the basics of linear codes.
 
@@ -350,7 +350,7 @@ $$
 \end{aligned}
 $$
 
-Since $$P(\bm{s})$$ doesn't depend explicitely on $$\bm{e}$$, we can ignore it when solving the maximization problem over $$\bm{e}$$. Next, we notice that any valid predicted error will have to obey $$\bm{H}\bm{e}=\bm{s}$$, so $$P(\bm{s} \vert \bm{e})$$ is either $$1$$ or $$0$$, depending on whether this equation is satisfied or not. In other words:
+Since $$P(\bm{s})$$ doesn't depend explicitly on $$\bm{e}$$, we can ignore it when solving the maximization problem over $$\bm{e}$$. Next, we notice that any valid predicted error will have to obey $$\bm{H}\bm{e}=\bm{s}$$, so $$P(\bm{s} \vert \bm{e})$$ is either $$1$$ or $$0$$, depending on whether this equation is satisfied or not. In other words:
 
 $$
 \begin{aligned}
@@ -390,7 +390,7 @@ $$
 \end{aligned}
 $$
 
-Any decoder that explicitely solves this optimization problem is called a **Maximum A Posteriori (MAP) decoder**, as we are maximizing the posterior distribution $$P(\bm{e} \vert \bm{s})$$, and is considered to be an ideal decoder.
+Any decoder that explicitly solves this optimization problem is called a **Maximum A Posteriori (MAP) decoder**, as we are maximizing the posterior distribution $$P(\bm{e} \vert \bm{s})$$, and is considered to be an ideal decoder.
 
 So how do we solve the MAP decoding problem? A naive idea would be to simply search through all error vectors and find one that has minimum weight and obeys the constraint. Since there are $$2^n$$ possible error vectors, the time complexity of this algorithm would scale exponentially with $$n$$ and definitely not be efficient. So can we do better? Unfortunately, the answer is no in general: this constrained optimization problem can be shown to be NP-complete[^1], meaning that, most likely, no polynomial-time algorithm will ever solve it.
 
@@ -577,7 +577,7 @@ $$
 \end{aligned}
 $$
 
-An interesting fact about those 8 codewords is that they all belong to the 16 codewords of the Hamming codes! You can check that by showing either that the three last components of each codewords correspond to the parity checks $$z_1$$, $$z_2$$, $$z_3$$ of the Hamming code, or that all the vectors are orthogonal to each others (meaning that that $$\bm{H}\bm{y}=\bm{0}$$ for all of them). For this reason, we say the the $$[7,4]$$-Hamming code is **self-orthogonal**, meaning that its dual is included in the original code. Are self-orthogonal codes interesting, given that they just seem to be diminished version of known codes? It happens that they're interesting if the included codewords all have a large Hamming weight, meaning that the distance will be higher than the original code (as shown in Exercise 8)! In our case, all the codewords have weight 4. The distance of the dual code is therefore 4, instead of 3 for the $$[7,4]$$-Hamming code.
+An interesting fact about those 8 codewords is that they all belong to the 16 codewords of the Hamming codes! You can check that by showing either that the three last components of each codeword correspond to the parity checks $$z_1$$, $$z_2$$, $$z_3$$ of the Hamming code, or that all the vectors are orthogonal to each others (meaning that that $$\bm{H}\bm{y}=\bm{0}$$ for all of them). For this reason, we say the the $$[7,4]$$-Hamming code is **self-orthogonal**, meaning that its dual is included in the original code. Are self-orthogonal codes interesting, given that they just seem to be diminished version of known codes? It happens that they're interesting if the included codewords all have a large Hamming weight, meaning that the distance will be higher than the original code (as shown in Exercise 8)! In our case, all the codewords have weight 4. The distance of the dual code is therefore 4, instead of 3 for the $$[7,4]$$-Hamming code.
 
 The resulting code is therefore a $$[7,3,4]$$-code, called a **simplex code**. The general family of simplex codes, defined as dual of Hamming codes, are $$[2^r-1, r, 2^{r-1}]$$-codes, meaning that they have a very large distance but a very low rate. That's one of the advantages of the duality construction, it allows us to find new codes with different properties!
 
@@ -697,5 +697,5 @@ $$ $$\newline$$
 <!-- ---------------------------------------------------------------- -->
 
 
-[^1]: Berlekamp et al, [On the Inherent Intractability of Certain Coding Problems](https://authors.library.caltech.edu/5607/1/BERieeetit78.pdf), 1978
+[^1]: Berlekamp et al., [On the Inherent Intractability of Certain Coding Problems](https://authors.library.caltech.edu/5607/1/BERieeetit78.pdf), 1978
 [^2]: See McKay, [Information Theory, Inference, and Learning Algorithms](https://www.inference.org.uk/itprnn/book.pdf)¸ for a great introduction to belief propagation algorithms for decoding

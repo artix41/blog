@@ -9,7 +9,7 @@ related_posts:
 ---
 
 Welcome to the third and last post of the stabilizer trilogy! In [Parts I](/blog/2023-01-31-stabilizer-formalism-1/) and [II](/blog/2023-03-16-stabilizer-formalism-2/), we introduced the stabilizer formalism using a group theoretic language: stabilizer codes are abelian subgroups of the Pauli group, logicals are elements of the centralizers, etc. While this formulation has a lot of merit, it might not be immediately obvious how to implement it in practice if you want to
-simulate a code. Fortunately, the whole formalism can be reexpressed using vectors, matrices and the whole linear algebra toolbox that comes with them: this is the parity-check matrix formulation! Parity-check matrices make it not only easy to implement stabilizer codes in your favorite programming language, they are also a very powerful tools to prove theorems about them, to classify them, to decode them, and more!
+simulate a code. Fortunately, the whole formalism can be reexpressed using vectors, matrices and the whole linear algebra toolbox that comes with them: this is the parity-check matrix formulation! Parity-check matrices make it not only easy to implement stabilizer codes in your favorite programming language, they are also a very powerful tool to prove theorems about them, to classify them, to decode them, and more!
 
 In this post, we will see how to define the parity-check matrix of a stabilizer code in the binary symplectic format, and how to express the decoding problem using it. After a short motivation section to remind you about classical parity-check matrices, we will delve into the binary symplectic format, a way to express Pauli operators using vectors. We will then define quantum parity-check matrices in this format and see how syndromes and logical operators can be expressed using them. With those tools in our hand, we will finally be able to define the decoding problem for quantum codes, and in particular see how to decode the Steane code. We will finish this post by defining quantum Tanner graphs, a graphical representation of parity-check matrices, often used in the literature to study the properties of codes and decoders.
 
@@ -220,7 +220,7 @@ This fact is actually very useful in practice: it gives us a systematic method t
 
 As for classical error correction, the decoding problem for quantum codes can be expressed using parity-check matrices.
 However, there is an important subtlety compared to the classical case.
-Instinctively, we would like to express the decoding problem as follow:
+Instinctively, we would like to express the decoding problem as follows:
 
 $$
 \begin{aligned}
@@ -231,7 +231,7 @@ $$
 This corresponds to finding the error $$c$$ that fits the syndrome and has the highest probability of happening.
 However, the actual goal is not quite exactly that.
 
-To see why, let's first slightly reformulate the syndrome equation constraint from above. If $$\bm{e}$$ is the actual error and we choose to apply a correction operator $$\bm{c}$$, the total operator $$\bm{e}+\bm{c}$$ applied to the code satisfies:
+To see why, let's first slightly reformulate the syndrome equation constraint from above. If $$\bm{e}$$ is the actual error, and we choose to apply a correction operator $$\bm{c}$$, the total operator $$\bm{e}+\bm{c}$$ applied to the code satisfies:
 
 $$
 \begin{aligned}
@@ -239,7 +239,7 @@ $$
 \end{aligned}
 $$
 
-Therefore $$\bm{e}+\bm{c} \in \text{Ker}(\bm{H})$$ is either a stabilizer or a non-trivial logical operator.
+Therefore, $$\bm{e}+\bm{c} \in \text{Ker}(\bm{H})$$ is either a stabilizer or a non-trivial logical operator.
 If it is a stabilizer, it doesn't have any effect on the codespace, and mission accomplished.
 If it is a non-trivial logical operator, we have failed the decoding process and applied a logical error to the state.
 
@@ -265,7 +265,7 @@ $$
 
 where $$P(\bm{\bar{c}})$$ can be calculated as $$P(\bm{\bar{c}}) = \sum_{\bm{c} \in \bm{\bar{c}}} P(\bm{c})$$.
 
-For many codes, it's possible to find syndromes where those two versions of the decoding problem give a different solution. This will be the case when the coset containing the most likely error have much less elements than another coset which contain slightly less likely errors. However, in practice, the two decoding problems often have the same solution, and many practical decoders only seek to solve the first optimization problem. This often results in a small decrease of performance, for a high gain in speed (this is for instance the case of the matching decoder for the surface code, that you might have heard of).
+For many codes, it's possible to find syndromes where those two versions of the decoding problem give a different solution. This will be the case when the coset containing the most likely error have much fewer elements than another coset which contain slightly less likely errors. However, in practice, the two decoding problems often have the same solution, and many practical decoders only seek to solve the first optimization problem. This often results in a small decrease of performance, for a high gain in speed (this is for instance the case of the matching decoder for the surface code, that you might have heard of).
 
 As always, let's apply what we've just learned to the Steane code.
 As an example, let's see how to decode a syndrome consisting of a single blue $$X$$-plaquette.
@@ -281,7 +281,7 @@ Here are the two cosets of $$Z$$ operators that fit this syndrome:
 </p>
 {:.figure}
 
-The first coset is constructed by taking the only single-qubit error that fits the syndrome, shown in the top-left triangle, and applying the seven $$Z$$ stabilizers to it (blue, red, green, blue-red, blue-green, red-green, red-blue-green). The second coset is obtained in a similar way, starting with the two-qubit operator shown in the top-left triangle.
+The first coset is constructed by taking the only single-qubit error that fits the syndrome, shown in the top-left triangle, and applying the seven $$Z$$ stabilizers to it (blue, red, green, blue-red, blue-green, red-green, red-blue-green). The second coset is obtained similarly, starting with the two-qubit operator shown in the top-left triangle.
 
 Assuming an i.i.d noise, we can immediately solve the first decoding problem: the most likely error is the one of minimum weight, that is, the first error of coset 1. We can therefore choose any correction operator in this coset as our decoding solution.
 
@@ -333,7 +333,7 @@ Many properties of codes and decoders can be interpreted in terms of Tanner grap
 
 ## Conclusion
 
-Let's summarize what we have learned in this post. Pauli operators acting on $$n$$ qubits can be expressed as binary vectors with $$2n$$ components: this is the binary symplectic format. The symplectic product on such vectors indicates whether two Pauli operators commute or not. Writing the generators of a stabilizer code in the binary symplectic format gives a parity-check matrix representing the code, and multiplying this parity-check matrix with an error vector gives the syndrome. As a result, logical operators (including stabilizers) are elements of the kernel of the parity-check matrix. To perform decoding, an optimal algorithm should choose a correction operator that belongs to the most likely coset of errors fitting the syndrome. However, decoders that simply output the most likely error often have acceptable performance in practice. Finally, the Tanner graph of a code is the the graph which has the parity-check matrix as its biadjacency matrix.
+Let's summarize what we have learned in this post. Pauli operators acting on $$n$$ qubits can be expressed as binary vectors with $$2n$$ components: this is the binary symplectic format. The symplectic product on such vectors indicates whether two Pauli operators commute or not. Writing the generators of a stabilizer code in the binary symplectic format gives a parity-check matrix representing the code, and multiplying this parity-check matrix with an error vector gives the syndrome. As a result, logical operators (including stabilizers) are elements of the kernel of the parity-check matrix. To perform decoding, an optimal algorithm should choose a correction operator that belongs to the most likely coset of errors fitting the syndrome. However, decoders that simply output the most likely error often have acceptable performance in practice. Finally, the Tanner graph of a code is the graph which has the parity-check matrix as its biadjacency matrix.
 
 This is it for the stabilizer trilogy, well done for having read this far! You should now be equipped with all the foundations to start delving into the quantum error correction literature and understand the most popular codes and decoders out there!
 
