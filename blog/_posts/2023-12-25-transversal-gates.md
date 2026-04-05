@@ -27,7 +27,7 @@ $$
 \end{aligned}
 $$
 
-For instance, if we start in a state $$a\vert 000\rangle + b\vert 111\rangle$$ in the codespace of the repetition code, we want our logical operation to give us another state $$a'\vert 000\rangle + b'\vert 111\rangle$$ within the same codespace. Note that if we take our code to be a tensor product of several stabilizer codes (e.g. a tensor product of two surface codes), this definition includes multi-qubit logical gates as well (e.g. a $$\texttt{CNOT}$$ between two surface codes). Also note that logical gates in general can also include measurements, but for the purpose of this post, we will restrain ourselves to logical *unitary* gates.
+For instance, if we start in a state $$a\vert 000\rangle + b\vert 111\rangle$$ in the codespace of the repetition code, we want our logical operation to give us another state $$a'\vert 000\rangle + b'\vert 111\rangle$$ within the same codespace. Note that if we take our codespace to be a tensor product of several codespaces, this definition includes multi-qubit logical gates as well (e.g. a $$\texttt{CNOT}$$ between two surface codes). Also note that logical gates in general can also include measurements, but for the purpose of this post, we will restrain ourselves to logical *unitary* gates.
 
 An important observation is that the set of logical unitary gates forms a group: both the product of two logical gates and the inverse of one preserve the codespace. For the inverse, we can see this by writing the unitary as a block diagonal matrix (with two blocks, one acting on the codespace and one acting on the rest of the Hilbert space) and remember that the inverse of a block diagonal matrix consists of the inverse of each block.
 
@@ -68,7 +68,9 @@ $$
 So whenever we introduce a new potential logical gate for a given code, the first step is always to verify that it maps Pauli stabilizers to general stabilizers[^1]. The second step is to check what logical operation it performs. Indeed, it is in principle possible that applying Hadamard gates on all the physical qubits ends up implementing a completely different logical gate than a Hadamard. To determine the effect of a logical gate, there are two possibilities:
 
 1. We check its effect on logical states. For instance, if we can prove that it maps $$\vert 0\rangle_L$$ to $$\vert +\rangle_L$$, and $$\vert 1\rangle_L$$ to $$\vert -\rangle_L$$, it means we are dealing with a logical Hadamard.
-2. We check its effect on logical Paulis. For instance, showing that $$UX_LU^{\dagger}=Z_L$$ and $$UZ_LU^{\dagger}=X_L$$ also proves that $$U$$ is a logical Hadamard.
+2. We check its effect on logical Paulis. For instance, showing that $$UX_LU^{\dagger}=Z_L$$ and $$UZ_LU^{\dagger}=X_L$$ proves that $$U$$ is a logical Hadamard (up to a phase). Determining the phase (which is necessary for instance to create a
+controlled version of the gate) can then be done by checking the effect of U on one
+chosen logical state.
 
 While we can find examples of the two methods used in the literature, I tend to prefer the second one as the resulting proofs are often easier to visualize.
 
@@ -112,7 +114,7 @@ Then, a single qubit $$X$$ error can propagate into $$d$$ $$X$$ errors and creat
 
 So what is a fault-tolerant logical gate? For a given family of code with a growing distance, a **fault-tolerant logical gate** is a gate that doesn't reduce the effective distance (i.e. the minimum number of physical errors that creates a logical error after applying the gate) to $$O(1)$$ when the family is growing[^2]. For instance, generalizing the two examples above to families of codes of size $$L \times L$$, the first gate would be considered fault-tolerant while the second one wouldn't.
 
-Within the class of fault-tolerant gates, locality-preserving gates are particularly useful to consider and easier to manipulate in practice. A **locality-preserving gate** is a gate $$U$$ that transforms small errors to small errors, that is, if $$\bm{e}$$ is a Pauli error supported on $$\ell$$ qubits, $$UeU^\dagger$$ must be supported on $$c \ell$$ qubits, where $$c=O(1)$$. Equivalently, a locality-preserving gate is a gate implemented via a constant depth circuit. Again, our first example is locality-preserving while the second one is not.
+Within the class of fault-tolerant gates, locality-preserving gates are particularly useful to consider and easier to manipulate in practice. Given a family of codes, a **locality-preserving gate** is a logical gate $$U$$ that transforms small errors to small errors, that is, if $$\bm{e}$$ is a Pauli error supported on $$\ell$$ qubits, $$UeU^\dagger$$ must be supported on $$c \ell$$ qubits, where $$c=O(1)$$. Again, our first example is locality-preserving while the second one is not. A typical subset of locality-preserving gates is the set of constant-depth quantum circuits.
 
 ## What is a transversal gate?
 
@@ -146,13 +148,24 @@ What is the effect of this logical gate? Let's see how it transforms the logical
 </p>
 {:.figure}
 
-Since our gate turns $$XXX$$ into $$ZZZ$$ and vice-versa, it means that it exchanges $$X_L$$ and $$Z_L$$ and is therefore a logical Hadamard!
+Since our gate turns $$XXX$$ into $$ZZZ$$ and vice-versa, it means that it exchanges $$X_L$$ and $$Z_L$$ and is therefore a logical Hadamard up to a phase. The following exercise shows that this phase is actually $1$.
 
-Can we also implement an $$\texttt{S}$$ gate transversally? Let's see what happens when we apply $$\texttt{S}$$ to all the physical qubits. Since $$\texttt{S}X\texttt{S}^\dagger=Y$$, every $$X$$ plaquette will turn into $$Y^{\otimes 4}$$ under the action of our gate. Now, is $$Y^{\otimes 4}$$ a stabilizer? Using $$XZ=-iY$$, we can see that multiplying an $$X$$ and a $$Z$$ plaquette results in the stabilizer $$(-i)^{4} Y^{\otimes 4}=Y^{\otimes 4}$$, so $$Y^{\otimes 4}$$ is indeed a stabilizer. Moreover, since $$\texttt{S}Z\texttt{S}^\dagger=Z$$, $$Z$$ plaquettes are preserved. Hence, our gate preserves the codespace and is therefore a valid transversal logical gate!
+**Exercise 1**: Assume that $$\texttt{H}^{\otimes 7}$$ implements $$e^{i\theta} H$$. Given any 1-qubit state $$\ket{\psi}$$, we denote by $$\bar{\ket{\psi}}$$ the corresponding logical code state.
+<br>
+**(a)** Show that $$\bra{0}^{\otimes 7} \left( \texttt{H}^{\otimes 7} \bar{\ket{0}} \right)=1/4$$.
+<br>
+**(b)** Show that $$\bra{0}^{\otimes 7} \left( e^{i\theta} \bar{\ket{+}} \right) =e^{i\theta}/4$$.
+<br>
+**(c)** Deduce that $$e^{i\theta}=1$$
+<br>
+[(solution)](#solution-of-the-exercise)
+{:.message}
 
-Let's now look at the action of our gate on the logicals! For our gate to be a logical $$\texttt{S}$$ gate, we need to prove that $$\texttt{S} \bar{X} \texttt{S}^\dagger = \bar{Y}$$. Picking the logical $$X$$ representative supported on three qubits from the figure above, we can see that the gate turns $$\bar{X}$$ into $$Y^{\otimes 3}$$. But is $$Y^{\otimes 3}$$ a $$Y$$ logical for our code? By definition, $$\bar{Y}=i\bar{X}\bar{Z}$$. Multiplying the representatives of $$\bar{X}$$ and $$\bar{Z}$$ drawn in the figure above and using $$XZ=-iY$$ again, we get the operator $$(-i)^3 Y^{\otimes 3}=i Y^{\otimes 3}$$. So $$\bar{Y}=i\bar{X}\bar{Z}=i^2 Y^{\otimes 3}=-Y^{\otimes 3}$$, and the product of $$\texttt{S}$$ gates turns any $$X$$ logical into a $$-Y$$ logical. So perhaps surprisingly, what our gate actually implements is a logical $$\texttt{S}^\dagger$$!
+Can we also implement an $$\texttt{S}$$ gate transversally? Let's see what happens when we apply $$\texttt{S}$$ to all the physical qubits. Since $$\texttt{S}X\texttt{S}^\dagger=Y$$, every $$X$$ plaquette will turn into $$Y^{\otimes 4}$$ under the action of our gate. Now, is $$Y^{\otimes 4}$$ a stabilizer? Since $$Y^{\otimes 4}=(iXZ)^{\otimes 4}=X^{\otimes 4} Z^{\otimes 4}, with both $$X^{\otimes 4}$$ and $$Z^{\otimes 4}$$ being stabilizers supported on the same plaquette, we see that $$Y^{\otimes 4}$$ is indeed a stabilizer. Moreover, since $$\texttt{S}Z\texttt{S}^\dagger=Z$$, $$Z$$ plaquettes are preserved. Hence, our gate preserves the codespace and is therefore a valid transversal logical gate!
 
-To implement an actual logical $$\texttt{S}$$, one simple solution is to instead apply $$\texttt{S}^\dagger$$ everywhere. However, there exists a second solution: take a bipartition of the qubits of the Steane code, that is, divide the vertices into two colors (black and white), such that two vertices of the same color are never incident to each other through an edge:
+Let's now look at the action of our gate on the logicals. For our gate to be a logical $$\texttt{S}$$ gate, we would need to prove that $$\texttt{S} \bar{X} \texttt{S}^\dagger = \bar{Y}$$. Picking the logical $$X$$ representative supported on three qubits from the figure above, we can see that the gate turns $$\bar{X}$$ into $$Y^{\otimes 3}$$. But $$Y^{\otimes 3}=(iXZ)^{\otimes 3}=-iX^{\otimes} Z^{\otimes 3}=-i\bar{X} \bar{Z}=-\bar{Y}$$. So $$\texttt{S}^{\otimes 7}$$ turns any $$X$$ logical into a $$-Y$$ logical. Thus, perhaps surprisingly, what our gate actually implements is a logical $$\texttt{S}^\dagger$$!
+
+To implement an actual logical $$\texttt{S}$$, one simple solution is to instead apply $$\texttt{S}^\dagger$$ everywhere. But there exists many more solutions. For instance, a solution that generalizes well to color codes (which we will see in a future post), is to take a bipartition of the qubits of the Steane code, that is, divide the vertices into two colors (black and white), such that two vertices of the same color are never incident to each other through an edge:
 
 <p style="text-align:center;">
     <img src="/assets/img/blog/transversal-gates/steane-code-partition.png" height="300"/>
@@ -161,7 +174,7 @@ To implement an actual logical $$\texttt{S}$$, one simple solution is to instead
 
 Since we have an odd number of qubits, one color will contain more vertices than the other. In the drawing above, there are more black vertices than white vertices. However, every plaquette contains the same number of white and black qubits. Now, let's apply $$\texttt{S}$$ to the four black qubits, and $$\texttt{S}^\dagger$$ to the three white qubits. Using the same calculation techniques as above, it should be an easy exercise to show that this gate also implements a logical $$\texttt{S}$$:
 
-**Exercise 1**: Show that the following operator made of a combination of $$\texttt{S}$$ and $$\texttt{S}^\dagger$$ implements a logical $$\texttt{S}$$ gate. [(solution)](#solution-of-the-exercise)
+**Exercise 2**: Show that the following operator made of a combination of $$\texttt{S}$$ and $$\texttt{S}^\dagger$$ implements a logical $$\texttt{S}$$ gate [(solution)](#solution-of-the-exercise)
 {:.message}
 <p style="text-align:center;">
     <img src="/assets/img/blog/transversal-gates/steane-code-s-gate.png" height="300"/>
@@ -169,11 +182,9 @@ Since we have an odd number of qubits, one color will contain more vertices than
 {:.figure}
 {:.message}
 
-The advantage of this later implementation based on a bipartition of qubits is that it generalizes well to color codes, so it will be useful when we will discuss color codes in a future post! It also shows that the transversal implementation of a logical gate is not necessarily unique.
-
 Since we are on a good streak, let's go on and look at the $$\texttt{T}$$ gate! Can we implement a $$\texttt{T}$$ gate transversally on the Steane code? Unfortunately, the answer is no this time. For instance, try to show that using a combination of $$\texttt{T}$$ and $$\texttt{T}^\dagger$$ on all qubits does not implement a logical gate at all:
 
-**Exercise 2**: Show that any operator made of $$\texttt{T}$$ and $$\texttt{T}^\dagger$$ on every physical qubit of the Steane code does **not** implement a logical gate. [(solution)](#solution-of-the-exercise)
+**Exercise 3**: Show that any operator made of $$\texttt{T}$$ and $$\texttt{T}^\dagger$$ on every physical qubit of the Steane code does **not** implement a logical gate. [(solution)](#solution-of-the-exercise)
 {:.message}
 
 More generally, we will soon see that it is not possible to implement non-Clifford gates transversally on 2D codes, so this eliminates any other possibility of transversal $$\texttt{T}$$ gate on the Steane code.
@@ -284,18 +295,103 @@ However, despite this abundance of more complicated techniques to implement logi
 
 ## Solution of the exercise
 
-**Exercise 1**: Show that the following operator made of a combination of $$\texttt{S}$$ and $$\texttt{S}^\dagger$$ implements a logical $$\texttt{S}$$ gate. [(solution)](#solution-of-the-exercise)
+**Exercise 1**: Assume that $$\texttt{H}^{\otimes 7}$$ implements $$e^{i\theta} H$$. Given any 1-qubit state $$\ket{\psi}$$, we denote by $$\bar{\ket{\psi}}$$ the corresponding logical code state.
+<br>
+**(a)** Show that $$\bra{0}^{\otimes 7} \left( \texttt{H}^{\otimes 7} \bar{\ket{0}} \right) =1/4$$.
+<br>
+**(b)** Show that $$\bra{0}^{\otimes 7} \left( e^{i\theta} \bar{\ket{+}} \right) =e^{i\theta}/4$$.
+<br>
+**(c)** Deduce that $$e^{i\theta}=1$$
+<br>
+{:.message}
+
+<div class="message" markdown="1">
+**Correction**: **(a)** We use the development of the $$\bar{\ket{0}}$$ state in terms of $$X$$ stabilizers:
+
+$$
+\begin{aligned}
+    \bar{\ket{0}}=\frac{1}{\sqrt{8}} \sum_{S_X \in \mathcal{S}_X} S_X \ket{0}^{\otimes 7},
+\end{aligned}
+$$
+
+where the sum is over all eight stabilizers, not just the generators. The coefficient in front of $$\ket{0}^{\otimes 7}$$ is given by
+
+$$
+\begin{aligned}
+    \bra{0}^{\otimes n} \texttt{H}^{\otimes 7} \bar{\ket{0}} &= \frac{1}{\sqrt{8}} \sum_{S_X \in \mathcal{S}_X} \bra{0}^{\otimes n} \texttt{H}^{\otimes 7} S_X \ket{0}^{\otimes 7} \\
+    &= \frac{1}{\sqrt{8}} \sum_{S_Z \in \mathcal{S}_Z} \bra{0}^{\otimes n} S_Z \texttt{H}^{\otimes 7} \ket{0}^{\otimes 7} \\
+    &= \frac{1}{\sqrt{8}} \sum_{S_Z \in \mathcal{S}_Z} \bra{0}^{\otimes n} \ket{+}^{\otimes n} \\
+    &= \frac{1}{\sqrt{8}} \frac{8}{\sqrt{2^7}} \\
+    &= \frac{1}{4}
+\end{aligned}
+$$
+
+**(b)** We have
+
+$$
+\begin{aligned}
+    e^{i\theta} \bar{\ket{+}} &= \frac{e^{i\theta}}{\sqrt{2}} (\bar{\ket{0}} + \bar{\ket{1}}),
+\end{aligned}
+$$
+
+which has a coefficient of $$\frac{e^{i\theta}}{\sqrt{2} \sqrt{8}}=\frac{e^{i\theta}}{4}$$ in front of $$\ket{0}^{\otimes 7}$$, coming only from the development of $$\bar{\ket{0}}$$.
+
+**(c)** Since $$H^{\otimes 7}$$ implements $$e^{i\theta} H$$ at the logical level, we have
+
+$$
+\begin{aligned}
+    H^{\otimes} \bar{\ket{0}} = e^{i\theta} \bar{\ket{+}}
+\end{aligned}
+$$
+
+Inserting $$\bra{0}^{\otimes 7}$$ on both sides of the equation, we get $$1/4 = e^{i\theta}/4$$, and therefore $$e^{i\theta}=1$$.
+</div>
+
+**Exercise 2**: Show that the following operator made of a combination of $$\texttt{S}$$ and $$\texttt{S}^\dagger$$ implements a logical $$\texttt{S}$$ gate.
 {:.message}
 <p style="text-align:center;">
     <img src="/assets/img/blog/transversal-gates/steane-code-s-gate.png" height="250"/>
 </p>
 {:.figure}
 {:.message}
-**Correction**: Let's start by showing that this operator preserves the stabilizer group. Since both $$\texttt{S}$$ and $$\texttt{S}^\dagger$$ preserve $$Z$$, we just need to look at the $$X$$ plaquettes. We note that each plaquette has exactly two $$\texttt{S}$$ and two $$\texttt{S}^\dagger$$ applied to it.
-So the gate transforms $$XXXX$$ into $$YY(-Y)(-Y)=YYYY$$, which is a stabilizer (as we proved at the beginning of the section). This means that the gate preserves the stabilizer group. We now need to study its logical action. Since it preserves $$Z$$ operators, any logical $$Z$$ representative is preserved. Let's now pick a logical $$X$$ representative, such as the one supported on the three bottom qubits of the triangle. Since it contains a single $$\texttt{S}^\dagger$$, it transforms $$XXX$$ into $$-YYY$$, which is the $$Y$$ logical of the code (as we also saw at the beginning of the section). Therefore, we are indeed dealing with a logical $$\texttt{S}$$ gate.
-{:.message}
 
-**Exercise 2**: Show that any operator made of $$\texttt{T}$$ and $$\texttt{T}^\dagger$$ on every physical qubit of the Steane code does **not** implement a logical gate. [(solution)](#solution-of-the-exercise)
+<div class="message" markdown="1">
+**Correction**: Let's start by showing that this operator preserves the stabilizer group. Since both $$\texttt{S}$$ and $$\texttt{S}^\dagger$$ preserve $$Z$$, we just need to look at the $$X$$ plaquettes. We note that each plaquette has exactly two $$\texttt{S}$$ and two $$\texttt{S}^\dagger$$ applied to it.
+So the gate transforms $$XXXX$$ into $$YY(-Y)(-Y)=YYYY$$, which is a stabilizer (as we proved at the beginning of the section). This means that the gate preserves the stabilizer group.
+
+We now need to study its logical action. Since it preserves $$Z$$ operators, any logical $$Z$$ representative is preserved. Let's now pick a logical $$X$$ representative, such as the one supported on the three bottom qubits of the triangle. Since it contains a single $$\texttt{S}^\dagger$$, it transforms $$XXX$$ into $$-YYY$$, which is the $$Y$$ logical of the code (as we also saw at the beginning of the section). Therefore, the gate implements $$e^{i\theta} S$$ for some real number $$\theta$$.
+
+Using the same technique as for the Hadamard gate, we now prove that the phase is 1. Denoting by $$\bar{\texttt{S}}$$ our logical gate, we have:
+
+$$
+\begin{aligned}
+    \bar{\texttt{S}} \bar{\ket{0}} = e^{i\theta} \bar{\ket{0}}
+\end{aligned}
+$$
+
+Applying $$\bra{0}^{\otimes 7}$$ to the left-hand side of the equation, we get:
+
+$$
+\begin{aligned}
+    \bra{0}^{\otimes 7} \bar{\texttt{S}} \bar{\ket{0}} &= \frac{1}{\sqrt{8}} \bra{0}^{\otimes 7} \sum_{S_X \in \mathcal{S}_X} \bar{\texttt{S}} S_X \ket{0}^{\otimes 7} \\
+    &= \frac{1}{\sqrt{8}} \bra{0}^{\otimes 7} \sum_{S_X \in \mathcal{S}_X} S_X S_Z \bar{\texttt{S}} \ket{0}^{\otimes 7} \\
+    &= \frac{1}{\sqrt{8}} \bra{0}^{\otimes 7} \sum_{S_X \in \mathcal{S}_X} S_X \ket{0}^{\otimes 7} \\
+    &= \frac{1}{\sqrt{8}}
+\end{aligned}
+$$
+
+where I have written $$S_Z$$ for the $$Z$$ stabilizer supported on the same qubits as $$S_X$$. Applying $$\bra{0}^{\otimes 7}$$ to $$e^{i\theta} \bar{\ket{0}}$$, we get:
+
+$$
+\begin{aligned}
+    \bra{0}^{\otimes 7} e^{i\theta} \bar{\ket{0}} &= \frac{e^{i\theta}}{\sqrt{8}}
+\end{aligned}
+$$
+
+Therefore, $$e^{i\theta}=1$$.
+</div>
+
+**Exercise 3**: Show that any operator made of $$\texttt{T}$$ and $$\texttt{T}^\dagger$$ on every physical qubit of the Steane code does **not** implement a logical gate
 {:.message}
 **Correction**: We can show that such operator doesn't turn $$X$$ plaquettes into stabilizers. Indeed, applying it to an $$X$$ plaquette $$P$$ gives a combination of $$SX$$ and $$S^\dagger X$$ with some phase factors. Let's call this new operator $$U_P$$. For it to be a stabilizer, it needs to turn Pauli stabilizers into stabilizers. Let's pick an $$X$$ plaquette stabilizer $$P'$$ adjacent to $$P$$. We can see that $$U_P$$ intersect with $$P'$$ on exactly two qubits, turning it into a combination of $$X$$s (where it doesn't intersect) and $$Y$$ or $$-Y$$ where it intersects. This operator made of both $$X$$ and $$Y$$ on a plaquette is clearly not a stabilizer, meaning that $$U_P$$ is not a stabilizer, meaning that the initial gate is not a logical gate.
 {:.message}
