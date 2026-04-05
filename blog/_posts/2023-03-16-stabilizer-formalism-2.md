@@ -57,63 +57,22 @@ Let's apply this formula to the Steane code. As a reminder, the Steane code is a
 
 Therefore, the Steane code has six independent stabilizer generators, three $$X$$ plaquettes and three $$Z$$ plaquettes, such that $$m=6$$. Hence we can see that it encodes $$k=7-6=1$$ logical qubits.
 
-## Logical gates
+## Pauli logical operators
 
 Now that we know the number of encoded qubits, what about the distance?
-To describe it, we need to introduce the notion of Pauli logical operator, which is a special case of logical gate. A **logical gate** is a unitary operator $$L$$ that maps the codespace to itself,
-i.e. such that $$L \vert \psi \rangle \in \mathcal{C}$$ for all $$\vert \psi \rangle \in \mathcal{C}$$.
-Logical gates therefore include stabilizers, but also operators that map one part of the codespace to another part.
-For instance, a logical Hadamard maps the logical zero state $$\vert \overline{0} \rangle$$ to the logical plus state $$\vert \overline{+} \rangle=\frac{1}{\sqrt{2}} \left(\vert \overline{0} \rangle + \vert \overline{1} \rangle\right)$$.
-
-Another way to understand logical gates is through their actions on the stabilizer group. Indeed, we can prove the following proposition:
-
-**Proposition 1**: a unitary $$L$$ is a logical gate if and only if it maps the stabilizer group $$\mathcal{S}$$ to itself, i.e.
-$$L^{\dagger} SL \in \mathcal{S}$$ for all $$S \in \mathcal{S}$$.
-{:.message}
-
-Note that this is precisely the definition of the **normalizer** of the group $$\mathcal{S}$$, denoted $$\mathcal{N}(\mathcal{S})$$, and you will often find logical gates defined in the literature as elements of the normalizer of the stabilizer group. This proposition explains why those two definitions are equivalent, and proving it is a cute little exercise that I encourage you to try on your own before reading the solution at the end of this post.
-
-**Exercise 2**: Prove Proposition 1 [(solution)](#solution-of-the-exercises)
-{:.message}
-
-Let's apply this to the Steane code. For instance, let's consider the operator $$H_L=H^{\otimes 7}$$ consisting of applying a Hadamard gate on all the physical qubits:
-
-<p style="text-align:center;">
-    <img src="/assets/img/blog/stabilizer-formalism-2/steane-code-hadamard.png" height="300"/>
-</p>
-{:.figure}
-
-I claim that $$H_L$$ is a logical gate. To show this, let's use Proposition 1 and show that it maps stabilizers to stabilizers. Let's pick an $$X$$ plaquette, for instance the red one supported on qubits $$1,2,3,4$$, that we will call $$S^X_r$$. Remember that $$H$$ turns $$X$$ into $$Z$$ and $$Z$$ into $$X$$, that is $$HXH=Z$$ and $$HZH=X$$. Therefore:
+To describe it, we need to introduce the notion of logical operator. A **Pauli logical operator** (often abbreviated *logical operator*, or even just *logical*) is a Pauli operator that commutes with all the stabilizers. In other words, a logical operator is an element of the **centralizer** $$C(\mathcal{S})$$ of the stabilizer group $$\mathcal{S}$$, defined as
 
 $$
 \begin{aligned}
-H_L S^X_r H_L
-&= (H_1 \ldots H_7) X_1 X_2 X_3 X_4 (H_1 \ldots H_7) \\
-&= (H_1 X_1 H_1) \ldots (H_4 X_4 H_4) H_5^2 H_6^2 H_7^2 \\
-&= Z_1 Z_2 Z_3 Z_4 \\
-& = S^Z_r
+    C(\mathcal{S})=\{L \in \mathcal{P}_n \,:\, LS = SL,\, \forall S \in \mathcal{S} \}
 \end{aligned}
 $$
 
-where $$S^Z_r$$ is the $$Z$$ red plaquette. Therefore, $$H_L$$ maps the $$X$$ red plaquette to the $$Z$$ red plaquette. The same reasoning can be applied to all the other $$X$$ and $$Z$$ plaquettes, showing that $$H_L$$ maps stabilizers to stabilizers and is therefore a logical gate.
+where $$\mathcal{P}_n$$ is the $$n$$-qubit Pauli group (all the tensor products of Pauli operators with a phase multiple of $$i$$).
 
-Note that we haven't shown that $$H_L$$ actually corresponds to a logical Hadamard, i.e. that it maps $$\vert \overline{0} \rangle$$ to $$\vert \overline{+} \rangle$$ and $$\vert \overline{1} \rangle$$ to $$\vert \overline{-} \rangle$$. The easiest way to show that is by proving that $$H_L$$ maps the logical $$X$$ operator to the logical $$Z$$ operator, and vice-versa.
-The next step is therefore to get a grasp of the Pauli logical operators. But before that, feel free to try the following exercise to check your understanding of logical gates:
+<!-- The difference between the normalizer and the centralizer is that if $$L \in \mathcal{N}(\mathcal{S})$$, $$LS=S'L$$ for $$S, S'$$ two stabilizers, while if $$L \in \mathcal{C}(\mathcal{S})$$, $$LS=SL$$. For Pauli operators, $$\mathcal{N}(\mathcal{S}) = \mathcal{C}(\mathcal{S})$$ and you will often find Pauli logicals defined with either normalizers or centralizers in the literature.  -->
 
-**Exercise 3**: Show that $$S_L=S^{\otimes 7}$$ is a logical gate [(solution)](#solution-of-the-exercises)
-{:.message}
-
-## Pauli logicals
-
-An important family of logical gates are the **Pauli logical operators** (often abbreviated *logical operators* if the context is clear, or even just *logicals*).
-As expected, those are the logical gates that belong to the Pauli group.
-As two given Pauli operators can either commute or anticommute, Pauli logicals could either commute or anticommute with stabilizers.
-However, if a Pauli logical anticommute with a stabilizer, that is $$SL=-LS$$, it means that $$L^{\dagger} S L = -S \notin \mathcal{S}$$, which contradicts the characterization of logical gates that we saw above. Therefore, Pauli logicals can be characterized by the following proposition:
-
-**Proposition 2**: a Pauli operator $$P$$ is a logical operator if and only if it commutes with all the stabilizers
-{:.message}
-
-Note that this is precisely the definition of the **centralizer** of the group $$\mathcal{S}$$ in the Pauli group, denoted $$\mathcal{C}(\mathcal{S})$$. The difference between the normalizer and the centralizer is that if $$L \in \mathcal{N}(\mathcal{S})$$, $$LS=S'L$$ for $$S, S'$$ two stabilizers, while if $$L \in \mathcal{C}(\mathcal{S})$$, $$LS=SL$$. For Pauli operators, $$\mathcal{N}(\mathcal{S}) = \mathcal{C}(\mathcal{S})$$ and you will often find Pauli logicals defined with either normalizers or centralizers in the literature. Using either this characterization or the original definition, it is easy to show that the set $$\mathcal{L}$$ of all Pauli logicals from a group, that is, the product of two logicals is itself a logical.
+It is easy to show that the set $$\mathcal{L}=C(\mathcal{S})$$ of all Pauli logicals from a group, that is, the product of two logicals is itself a logical, and the inverse of a logical is also a logical.
 
 Finally, let's define **non-trivial logical operators** (also known as **logical errors**) as elements of $$\mathcal{C}(\mathcal{S}) \backslash \mathcal{S}$$, or in other words, Pauli operators that commute with all the stabilizers but are not stabilizers themselves. We can now characterize the **distance** of a stabilizer code as the weight of the smallest logical error:
 
@@ -132,15 +91,11 @@ As usual, let's apply what we've seen to the Steane code. I claim that the follo
 
 Indeed, it is easy to check that they commute with all the stabilizers, as they share either zero or two qubits with every plaquette. Moreover, by trying all the combinations of stabilizers, you can show that they don't belong the stabilizer group, and are therefore non-trivial. By using a similar brute-force search, you can also show that they are the smallest non-trivial logical operators, thereby proving that the distance of the Steane code is $$d=3$$. This achieves the proof that the Steane code is a $$[[7,1,3]]$$ code, as claimed in the previous post.
 
-However, as discussed in the context of the Hadamard gate, we still haven't shown that $$X_L$$ and $$Z_L$$ actually act as logical $$X$$ and $$Z$$ operators on the codespace. For that, we would need to show that $$X_L$$ corresponds to a logical bit-flip and $$Z_L$$ to a logical phase-flip, i.e. that they map respectively $$\vert 0 \rangle_L$$ into $$\vert 1 \rangle_L$$ and $$\vert + \rangle_L$$ into $$\vert - \rangle_L$$. Alternatively, we could show that $$\vert 0 \rangle_L$$ and $$\vert 1 \rangle_L$$ are eigenstates of $$Z_L$$ while $$\vert + \rangle_L$$ and $$\vert - \rangle_L$$ are eigenstates of $$X_L$$.
+However, we still haven't shown that $$X_L$$ and $$Z_L$$ actually act as logical $$X$$ and $$Z$$ operators on the codespace. For that, we would need to show that $$X_L$$ corresponds to a logical bit-flip and $$Z_L$$ to a logical phase-flip, i.e. that they map respectively $$\vert 0 \rangle_L$$ into $$\vert 1 \rangle_L$$ and $$\vert + \rangle_L$$ into $$\vert - \rangle_L$$. Alternatively, we could show that $$\vert 0 \rangle_L$$ and $$\vert 1 \rangle_L$$ are eigenstates of $$Z_L$$ while $$\vert + \rangle_L$$ and $$\vert - \rangle_L$$ are eigenstates of $$X_L$$.
 
 As it happens, this is just a matter of convention. There is no preferred $$\vert 0 \rangle_L$$ state in the codespace, we have the freedom to pick any of the states and decide that it is going to be the zero state. For instance, for the repetition code, we decided that $$\vert 0 \rangle_L=\vert 000 \rangle$$, but we could have very much taken $$\vert 0 \rangle_L=\vert 111 \rangle$$ or even $$\vert 0 \rangle_L=\frac{1}{\sqrt{2}} \left(\vert 000 \rangle+\vert 111 \rangle\right)$$, as long as we keep track of it during the computation and when analyzing the measurements.
 
-Therefore, as it is usually done with stabilizer codes, let's **define** $$\vert 0 \rangle_L$$ and $$\vert 1 \rangle_L$$ as the two eigenstates of $$Z_L$$, and $$\vert + \rangle_L$$ and $$\vert - \rangle_L$$ as the two eigenstates of $$X_L$$. This is a valid choice since $$X_L$$ and $$Z_L$$ anticommute, and this also fixes the logical $$Y$$ operator as $$Y_L=X_LZ_L$$. All the other logical gates are also fixed by how they transform those Pauli operators. For instance, you are now ready to prove that the logical gate $$H_L$$ actually acts as a logical Hadamard gate.
-
-**Exercise 4**: Show that $$H_L=H^{\otimes 7}$$ acts as a logical Hadamard gate [(solution)](#solution-of-exercises)<br>
-*(**Hint**: show that $$H_L X_L H_L=Z_L$$ and $$H_L Z_L H_L=X_L$$)*
-{:.message}
+Therefore, as it is usually done with stabilizer codes, let's **define** $$\vert 0 \rangle_L$$ and $$\vert 1 \rangle_L$$ as the two eigenstates of $$Z_L$$, and $$\vert + \rangle_L$$ and $$\vert - \rangle_L$$ as the two eigenstates of $$X_L$$. This is a valid choice since $$X_L$$ and $$Z_L$$ anticommute, and this also fixes the logical $$Y$$ operator as $$Y_L=iX_LZ_L$$.
 
 ## Logical cosets
 
@@ -194,7 +149,7 @@ Finally, the quotient group can be generated by all the $$\bar{X}_i, \bar{Z}_i$$
 
 ## Conclusion
 
-In this post, we have introduced many crucial concepts to understand stabilizer codes. We have defined logical gates as operators that preserve the codespace, or equivalently, the stabilizer space. Those correspond to elements of the normalizer of $$\mathcal{S}$$. In the specialize case of Pauli operators, we have seen that they correspond to elements of the centralizer, that is, elements that commute with all the stabilizers. We have seen that logical operations are highly degenerate in stabilizer codes, as multiplying a logical operator by a stabilizer gives the same operation on the codespace. We have therefore shown how to group equivalent logicals together within equivalent classes. We have learned how to compute the number of logical qubits in two different ways: either by counting the number $$m$$ of generators of $$\mathcal{S}$$ and using $$k=n-m$$, or by counting the number of generators of $$\mathcal{L} / \mathcal{S}$$ and dividing by two. Finally, we have seen that the distance can be obtained by finding the minimum-weight logical operator. All those ideas have been illustrated using the Steane code, which we have proven to be a $$[[7,1,3]]$$-code.
+In this post, we have introduced many crucial concepts to understand stabilizer codes. We have seen that Pauli logical operators correspond to elements of the centralizer, that is, elements that commute with all the stabilizers. We have seen that logical operations are highly degenerate in stabilizer codes, as multiplying a logical operator by a stabilizer gives the same operation on the codespace. We have therefore shown how to group equivalent logicals together within equivalent classes. We have learned how to compute the number of logical qubits in two different ways: either by counting the number $$m$$ of generators of $$\mathcal{S}$$ and using $$k=n-m$$, or by counting the number of generators of $$\mathcal{L} / \mathcal{S}$$ and dividing by two. Finally, we have seen that the distance can be obtained by finding the minimum-weight logical operator. All those ideas have been illustrated using the Steane code, which we have proven to be a $$[[7,1,3]]$$-code.
 
 In the next and last part of this trilogy, we will see how to formulate the stabilizer formalism in a more concrete way, using parity-check matrices in the binary symplectic format. This format, widely used in numerical implementations of quantum codes, will allow us to switch from group theory to linear algebra. We will express stabilizers and logicals as binary vectors, with commutation relations corresponding to a linear operation on those vectors. Using the notion of logical cosets that we have learned in this post, we will finally be able to formalize the decoding problem for quantum codes.
 
@@ -211,38 +166,6 @@ In the next and last part of this trilogy, we will see how to formulate the stab
 **(b)** There are exactly $$2^m$$ elements in the group $$\mathcal{S}$$, each defined by the choice of the generators to include in the stabilizers. This is due to the independence of the generators, meaning that their products always defines a new stabilizer. When developing the expression of $$\Pi_\mathcal{C}$$, we therefore get all the elements of the stabilizer group exactly once in the sum. \\
 **(c)** The eigenvalues of $$\Pi_{\mathcal{C}}$$ are $$1$$ and $$0$$, with the multiplicity of $$1$$ corresponding to the dimension of the codespace (since $$\Pi_{\mathcal{C}}$$ projects onto the codespace). The trace is therefore exactly this dimension. \\
 **(d)** Taking the trace on both sides, we get $$\text{dim}(\mathcal{C})=\frac{1}{2^m}\sum_{S \in \mathcal{S}} \text{Tr}[S]$$. Since all stabilizers are Paulis, their trace is zero except for the identity element, for which it is $$2^n$$ (the total dimension of the space). Therefore, the sum is equal to $$2^n$$ and we recover the desired formula.
-<br>
-[(Back to section)](#logical-gates)
-{:.message}
-
-**Exercise 2**: Prove that a unitary $$L$$ is a logical gate if and only if it maps the stabilizer group $$\mathcal{S}$$ to itself, i.e.
-$$L^{\dagger} SL \in \mathcal{S}$$ for all $$S \in \mathcal{S}$$.
-<br><br>
-**Correction**: For the first direction, let's suppose that $$L$$ is a logical gate, i.e. $$L$$ maps the codespace to itself.
-For $$S \in \mathcal{S}$$, let's show that $$LSL^{\dagger} \in \mathcal{S}$$, that is, $$LSL^{\dagger} \vert \psi \rangle = \vert \psi \rangle$$ for all $$\vert \psi \rangle \in \mathcal{C}$$. For $$\vert \psi \rangle \in \mathcal{C}$$, $$L\vert \psi \rangle \in \mathcal{C}$$ by assumption, so $$SL\vert \psi \rangle = L \vert \psi \rangle$$ and $$L^{\dagger} S L \vert \psi \rangle = L^{\dagger} L \vert \psi \rangle = \vert \psi \rangle$$.
-For the other direction, let's suppose that $$L \in \mathcal{N}(\mathcal{S})$$, and let's show that for a state $$\vert \psi \rangle \in \mathcal{C}$$, $$L \vert \psi \rangle \in \mathcal{C}$$. It comes down to showing $$SL \vert \psi \rangle = L \vert \psi \rangle$$ for $$S \in \mathcal{S}$$. Since $$L^{\dagger} S L \in \mathcal{S}$$ by assumption, there exists $$S' \in \mathcal{S}$$ such that $$L^{\dagger} S L = S'$$, or equivalently, $$SL = LS'$$. Therefore, $$SL\vert \psi \rangle = LS'\vert \psi \rangle = L \vert \psi \rangle$$.
-<br>
-[(Back to section)](#logical-gates)
-{:.message}
-
-**Exercise 3**: Show that $$S_L=S^{\otimes 7}$$ is a logical gate
-<br><br>
-**Correction**: Remember that the $$S$$ gate turns $$X$$ into $$Z$$ and $$Z$$ into itself.
-Let's pick any $$X$$ plaquette. Applying $$S_L$$ turns $$X^{\otimes 4}$$ into $$Y^{\otimes 4}$$.
-Since $$Y^{\otimes 4}=X^{\otimes 4} Z^{\otimes 4}$$ (up to a phase), it is a product of stabilizers and therefore a stabilizer itself.
-Moreover, $$S_L$$ leaves $$Z$$ plaquettes unchanged.
-Thus, $$S_L$$ maps stabilizers to stabilizers and forms a logical gate.
-<br>
-[(Back to section)](#logical-gates)
-{:.message}
-
-**Exercise 4**: Show that $$H_L=H^{\otimes 7}$$ acts as a logical Hadamard gate<br>
-*(**Hint**:  show that $$H_L X_L H_L=Z_L$$ and $$H_L Z_L H_L=X_L$$)*
-<br><br>
-**Correction**: Consider the logical $$X$$ operator $$X_L=X^{\otimes 3}$$ acting on qubits $$5,6,7$$.
-We get $$H_L X_L H_L = Z^{\otimes 3}=Z_L$$.
-Using a similar reasoning, we can show that $$H_L Z_L H_L =X_L$$.
-Thus, $$H_L$$ acts as a logical Hadamard on the codespace.
 <br>
 [(Back to section)](#logical-gates)
 {:.message}
