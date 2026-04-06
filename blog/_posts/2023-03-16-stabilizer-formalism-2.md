@@ -8,11 +8,11 @@ related_posts:
     -
 ---
 
-Happy to see you back for the second part of the stabilizer trilogy! In the [previous post](/blog/2023-01-31-stabilizer-formalism-1), we defined stabilizer codes and gave a few examples of codes and constructions. In particular, we studied the Steane code, which can be defined by laying down seven qubits on a triangle with three colored faces, each representing an $$X$$ and a $$Z$$ stabilizer. However, we left pending a few important questions: what are the parameters of the code, and in particular the number of logical qubits and the distance? What logical operations can we apply to this code? How does the decoding process work?
+Happy to see you back for the second part of the stabilizer trilogy! In the [previous post](/blog/2023-01-31-stabilizer-formalism-1), we defined stabilizer codes and gave a few examples of codes and constructions. In particular, we studied the Steane code, which can be defined by laying down seven qubits on a triangle with three colored faces, each representing an $$X$$ and a $$Z$$ stabilizer. However, we left pending a few important questions: what are the parameters of the code, and in particular the number of logical qubits and the distance? What are its Pauli logical operators? How does the decoding process work?
 
-In this post, we will get down to the nitty-gritty of logical operations. Those are unitary operators acting on the physical qubits, which allow you to go from one part of the codespace to another. For instance, a logical Hadamard lets you go from the logical zero state $$\vert 0 \rangle_L$$ to the logical plus state $$\vert + \rangle_L$$. An important class of logical operations are the Pauli logicals, whose properties form a crucial component of stabilizer codes, as they allow to derive the distance of the code, the number of logical qubits, and the main formulation of decoding. Formalizing all those ideas rigorously relies on a fair bit of abstraction, using notions such as centralizers, normalizers, equivalence classes, etc. While we won't shy away from the abstraction, we will also make every notion as concrete as possible using the Steane code as our running example.
+In this post, we will get down to the nitty-gritty of Pauli logical operators, whose properties form a crucial component of stabilizer codes, as they allow to derive the distance of the code, the number of logical qubits, and the main formulation of decoding. Formalizing all those ideas rigorously relies on a fair bit of abstraction, using notions such as centralizers, equivalence classes, etc. While we won't shy away from the abstraction, we will also make every notion as concrete as possible using the Steane code as our running example.
 
-We will start by showing how to count the number of logical qubits encoded in a stabilizer code. We will then formalize the notion of logical gates in a stabilizer code, and specialize the definition to the case of Pauli operators. Finally, we will see how to understand logical operators in terms of equivalent classes, which will become very handy when trying to understand decoding and topological constructions.
+We will start by showing how to count the number of logical qubits encoded in a stabilizer code. We will then formalize the notion of Pauli logical operator in a stabilizer code. Finally, we will see how to understand logical operators in terms of equivalent classes, which will become very handy when trying to understand decoding and topological constructions.
 
 ## Logical qubits
 
@@ -60,7 +60,7 @@ Therefore, the Steane code has six independent stabilizer generators, three $$X$
 ## Pauli logical operators
 
 Now that we know the number of encoded qubits, what about the distance?
-To describe it, we need to introduce the notion of logical operator. A **Pauli logical operator** (often abbreviated *logical operator*, or even just *logical*) is a Pauli operator that commutes with all the stabilizers. In other words, a logical operator is an element of the **centralizer** $$C(\mathcal{S})$$ of the stabilizer group $$\mathcal{S}$$, defined as
+To describe it, we need to introduce the notion of logical operator. A **Pauli logical operator** (often abbreviated *logical operator*, or just *logical*) is a Pauli operator that commutes with all the stabilizers. In other words, a logical operator is an element of the **centralizer** $$C(\mathcal{S})$$ of the stabilizer group $$\mathcal{S}$$, defined as
 
 $$
 \begin{aligned}
