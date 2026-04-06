@@ -1454,6 +1454,43 @@ In this example, a vertex excitation is created on the rough boundary, and a pla
 
 More importantly, we can observe that vertex excitations can only be created or annihilated at the rough boundaries, and plaquette excitations only at the smooth boundaries. This means that $$X$$ logicals have to join the rough boundaries, and $$Z$$ logicals have to join the smooth boundaries. This is illustrated in the following figure, where we can see that there is no "vertical" $$X$$ logical or "horizontal" $$Z$$ logical.
 
+<!-- <div id="planar-code-no-opposite-logicals" style="margin: auto; display: block; width: 450px; height: 450px">
+</div>
+
+<script type="module">
+    import { Interface } from 'http://127.0.0.1:5001/js/gui.js'
+
+    const params = {
+        dimension: 2,
+        codeName: 'Planar 2D',
+        Lx: 5,
+        Ly: 5,
+        Lz: 5,
+        rotated: false
+    };
+
+    let id = 'planar-code-no-opposite-logicals';
+
+    let gui = new Interface(params, {}, {}, 'http://127.0.0.1:5001', id);
+
+    await gui.init()
+    gui.code.insertError([2, 1], 'X');
+    gui.code.insertError([2, 3], 'X');
+    gui.code.insertError([2, 5], 'X');
+    gui.code.insertError([2, 7], 'X');
+
+    gui.code.insertError([2, 5], 'Z');
+    gui.code.insertError([4, 5], 'Z');
+    gui.code.insertError([6, 5], 'Z');
+    gui.code.insertError([8, 5], 'Z');
+
+    drawImage(gui, id, true);
+</script> -->
+
+<p style="text-align:center;">
+    <img src="/assets/img/blog/surface-code/planar-code-no-opposite-logicals.png" />
+</p>
+
 Therefore, there are only two equivalence classes of logicals for each error type: the strings that join opposite boundaries, and the trivial loops. As a consequence, this non-periodic version of the surface code, also called **planar code**, only encodes a single qubit. It is a $$[[2L^2 - 2L + 1, 1, L]]$$-code. While we have lost one qubit compared to the toric version, the fact that it can be laid out on a 2D surface makes it much more practical.
 
 ## A more compact version: the rotated surface code

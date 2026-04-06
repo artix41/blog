@@ -73,6 +73,19 @@ The snippet below will run the code on every `hy-push-state-load` event instead.
 </script>
 
 <script>
+  (function reenableRightClick() {
+    if (window.__contextMenuPatchApplied) return;
+    window.__contextMenuPatchApplied = true;
+
+    var originalPreventDefault = Event.prototype.preventDefault;
+    Event.prototype.preventDefault = function () {
+      if (this && this.type === 'contextmenu') return;
+      return originalPreventDefault.call(this);
+    };
+  })();
+</script>
+
+<script>
   (function sidebarArrowHandle() {
     var COLLAPSED_CLASS = 'sidebar-collapsed-by-arrow';
     var DESKTOP_QUERY = '(min-width: 64em)';
