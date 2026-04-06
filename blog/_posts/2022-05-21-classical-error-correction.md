@@ -223,7 +223,7 @@ $$
 
 Two important remarks about generator matrices:
 
-1. Elementary operations on the rows and columns of $$\bm{G}$$ don't change the code. Indeed, the code is defined as the image of $$G$$, which is invariant under similarity transformations. Using Gaussian reduction, it is therefore always possible to transform $$\bm{G}$$ to have the form $$\bm{G}=\left(\begin{matrix} I_k \\ \hline \bm{A} \end{matrix} \right)$$. In other words, any linear code can be seen as a message supplemented with parity checks!
+1. Elementary operations on the rows of $$\bm{G}$$ don't change the code. Indeed, the code is defined as the image of $$G$$, which is invariant under such operations. Using Gaussian reduction, it is therefore always possible to transform $$\bm{G}$$ to have the form $$\bm{G}=\left(\begin{matrix} I_k \\ \hline \bm{A} \end{matrix} \right)$$. In other words, any linear code can be seen as a message supplemented with parity checks!
 2. The codewords of a code described by $$\bm{G}$$ can be found by taking all the linear combinations of the columns of $$\bm{G}$$ (the vector $$\bm{x}$$ in the definition indicates which columns you select or not). Therefore, to find all the codewords, just calculate all the $$\bm{y}$$ of the form $$\bm{y}=a_1 \bm{c_1} + ... a_k \bm{c_k}$$ where $$\bm{c_i}$$ is the $$i^{\th}$$ column of $$G$$ and $$a_1,...a_k \in \{0,1\}$$.
 
 An equivalent picture to describe linear codes is through the **parity-check matrix**, defined as an $$m \times n$$ matrix $$\bm{H}$$ such that
