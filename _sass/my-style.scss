@@ -57,6 +57,10 @@
   margin-bottom: 1rem;
 }
 
+.indented-list {
+  margin-left: 2rem;
+}
+
 @media screen {
   body::before {
     background: var(--body-bg) !important;
