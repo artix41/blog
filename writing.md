@@ -2,6 +2,16 @@
 title: Other writings
 ---
 
+## PhD thesis
+
+Quantum error correction in three dimensions and beyond
+[\[PDF\]](https://discovery.ucl.ac.uk/id/eprint/10223041/7/phd-thesis-final-corrected.pdf)
+{:.lead style="margin-bottom: 0"}
+Arthur Pesah
+{:.faded style="margin-bottom: 0"}
+PhD Thesis (UCL), 2026
+{: style="margin-top:0"}
+
 ## Reports
 
 Introduction to adiabatic quantum computing
