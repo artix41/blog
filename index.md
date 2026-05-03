@@ -22,5 +22,5 @@ You can find my full CV [here](https://artix41.github.io/assets/pdf/cv-arthur-pe
 If you have similar interests, feel free to reach out, I always enjoy discussing research and meeting new people!
 
 
-**Photo credits**: profile picture by [Alison Pouplin](http://a-pouplin.github.io) and background picture by [Lukas Schlagenhauf](https://www.flickr.com/photos/lschlagenhauf/)
+**Photo credits**: profile picture by [Dominik Kufel](https://dom-kufel.github.io/) (at Yosemite!), and background picture by [Lukas Schlagenhauf](https://www.flickr.com/photos/lschlagenhauf/)
 {:.message}
