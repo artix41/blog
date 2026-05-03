@@ -148,7 +148,7 @@ What is the effect of this logical gate? Let's see how it transforms the logical
 </p>
 {:.figure}
 
-Since our gate turns $$XXX$$ into $$ZZZ$$ and vice-versa, it means that it exchanges $$X_L$$ and $$Z_L$$ and is therefore a logical Hadamard up to a phase. The following exercise shows that this phase is actually $1$.
+Since our gate turns $$XXX$$ into $$ZZZ$$ and vice-versa, it means that it exchanges $$X_L$$ and $$Z_L$$ and is therefore a logical Hadamard up to a phase. The following exercise shows that this phase is actually $$1$$.
 
 **Exercise 1**: Assume that $$\texttt{H}^{\otimes 7}$$ implements $$e^{i\theta} H$$. Given any 1-qubit state $$\ket{\psi}$$, we denote by $$\bar{\ket{\psi}}$$ the corresponding logical code state.
 <br>
@@ -209,7 +209,7 @@ As a reminder, this version of the surface code encodes two logical qubits, whos
 <img src="/assets/img/blog/transversal-gates/surface-code-z-logicals.png" style="display: block; float: right;"/>
 <div style="clear: both"></div>
 
-So what happens when we apply a Hadamard gate on all physical qubits of the code? It turns the $$X$$ plaquette stabilizers into $$Z$$ plaquette operators, and the $$Z$$ vertex stabilizers into $$X$$ vertex operators. Since $$Z$$ plaquette and $$X$$ vertex operators are not stabilizers of the surface code we are considering, the operation is *not* a logical gate according to our definition. However, that's where we might want to loosen our definition a little bit: the code resulting from the application of $$\texttt{H}$$ everywhere is still a valid surface code, with just a different convention for which stabilizers are $$X$$ or $$Z$$. Since we have periodic boundary conditions, this code transformation can also be seen as a simple translation by half an edge in the horizontal and vertical directions. Moreover, $$X$$ logicals of the initial code are turned into $$Z$$ logicals of the new code, so the operation corresponds to a logical Hadamard applied simultaneously to the two logical qubits of the toric code. So, as long as we keep track of what the stabilizers are at every instant, we are in principle allowed to modify the code when applying logical gates (particularly if the new code is just a translation or rotation of the original one).
+So what happens when we apply a Hadamard gate on all physical qubits of the code? It turns the $$X$$ plaquette stabilizers into $$Z$$ plaquette operators, and the $$Z$$ vertex stabilizers into $$X$$ vertex operators. Since $$Z$$ plaquette and $$X$$ vertex operators are not stabilizers of the surface code we are considering, the operation is *not* a logical gate according to our definition. However, that's where we might want to loosen our definition a little: the code resulting from the application of $$\texttt{H}$$ everywhere is still a valid surface code, with just a different convention for which stabilizers are $$X$$ or $$Z$$. Since we have periodic boundary conditions, this code transformation can also be seen as a simple translation by half an edge in the horizontal and vertical directions. Moreover, $$X$$ logicals of the initial code are turned into $$Z$$ logicals of the new code, so the operation corresponds to a logical Hadamard applied simultaneously to the two logical qubits of the toric code. So, as long as we keep track of what the stabilizers are at every instant, we are in principle allowed to modify the code when applying logical gates (particularly if the new code is just a translation or rotation of the original one).
 
 More care is needed when considering this operation on the planar code, in the context of a broader quantum circuit. Indeed, when using a rotated planar code, we can see the code resulting from the application of the transversal Hadamard as a rotation of the original code.
 
@@ -243,7 +243,7 @@ While the application domain of this theorem is already quite large—it applies
 
 ## Bravyi-König theorem
 
-The Bravyi-König theorem states that the transversal gates (or more generally the gates implemented by a constant-depth quantum circuit) of a $$D$$-dimensional quantum code are limited to the $$D$$-th level of the Clifford hierarchy. The $$n$$-qubit **Clifford hierarchy** $$\left(\mathcal{P}_j\right)_{j \geq 1}$$ is a family of sets of unitaries that can be defined by induction as follow:
+The Bravyi-König theorem states that the transversal gates (or more generally the gates implemented by a constant-depth quantum circuit) of a $$D$$-dimensional quantum code are limited to the $$D$$-th level of the Clifford hierarchy. The $$n$$-qubit **Clifford hierarchy** $$\left(\mathcal{P}_j\right)_{j \geq 1}$$ is a family of sets of unitaries that can be defined by induction as follows:
 
 * The first element $$\mathcal{P}_1$$ is the $$n$$-qubit Pauli group.
 * The $$j$$-th element $$\mathcal{P}_j$$ is the set of $$n$$-qubit unitaries $$U$$ such that $$U \mathcal{P}_1 U^{\dagger} \subseteq \mathcal{P}_{j-1}$$.
