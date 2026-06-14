@@ -1,6 +1,6 @@
 ---
 title: The topology of topological QEC II — Homology groups
-# image: /assets/img/blog/topological-qec/thumbnail.png
+image: /assets/img/blog/topological-qec-2/thumbnail.png
 tags: [quantum-computing]
 description: >
 comments: true
