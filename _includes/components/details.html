@@ -1,0 +1,34 @@
+<details {% if include.open %}open{% endif %} class="details-section">
+  <summary class="details-summary">{{ include.summary }}</summary>
+  <div class="details-content">
+    {{ include.content | markdownify }}
+  </div>
+</details>
+
+<style>
+  .details-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .details-content img {
+    max-width: 100%;
+    height: auto;
+    align-self: center;
+  }
+
+  .details-content p {
+    margin: 1rem 0;
+  }
+
+  .details-content p:has(img) {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .details-content hy-img {
+    justify-content: center;
+  }
+</style>

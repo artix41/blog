@@ -61,6 +61,29 @@
   margin-left: 2rem;
 }
 
+.details-section {
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem 0;
+
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+
+    &:hover {
+      color: var(--accent-color, #0066cc);
+    }
+  }
+
+  .details-content {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+  }
+}
+
 @media screen {
   body::before {
     background: var(--body-bg) !important;

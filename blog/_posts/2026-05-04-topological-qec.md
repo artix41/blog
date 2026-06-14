@@ -12,7 +12,7 @@ To continue our journey into quantum error correction, it is time to dive deeper
 
 As it happens, the field of **algebraic topology** provides exactly the right tools to answer these questions. By understanding its basics, we can construct and study generalized surface codes and many other families of topological codes, such as color codes and fracton codes[^1]. Furthermore, a generalization of algebraic topology, **homological algebra**, allows us to go beyond topological codes and serves as the foundation for most quantum LDPC code constructions and logical gate designs. The definitions and fundamental theorems from these two fields are therefore used all over the QEC literature, and studying them is well worth your time if you want to understand most modern fault-tolerant architecture constructions.
 
-In this two-post series, we will explore the basics of algebraic topology with a quantum error correction lens. This first post focuses on *constructions*: you will learn about topological spaces, manifolds, cellulations, and chain complexes, and see how they can be used to build generalized surface codes. The second post focuses on *properties*, introducing homology and cohomology groups and explaining how they relate to the main properties of quantum codes.
+In this three-post series, we will explore the basics of algebraic topology with a quantum error correction lens. This first post focuses on *constructions*: you will learn about topological spaces, manifolds, cellulations, and chain complexes, and see how they can be used to build generalized surface codes. The second and third posts focus on *properties*, introducing homology and cohomology groups and explaining how they relate to the main properties of quantum codes.
 
 As always, the main focus of this blog is on building intuition and visual understanding, and I therefore gloss over many technical details. However, if you are craving more details after reading these posts, I recommend consulting either Chapter 3 of [my thesis](https://discovery.ucl.ac.uk/id/eprint/10223041/7/phd-thesis-final-corrected.pdf) or Chapter 2 of [Niko Breuckmann's thesis](https://arxiv.org/abs/1802.01520), where all the definitions and theorems are presented more formally.
 
@@ -294,6 +294,7 @@ $$
 defines a valid CSS code with parity-check matrices $$H_Z = \partial_1$$ and $$H_X = \partial_2^T$$. In other words, CSS codes are equivalent to length-2 chain complexes over $$\mathbb{Z}_2$$. The Hasse diagram of the chain complex then corresponds to the Tanner graph of the code. The problem of finding LDPC CSS codes therefore reduces to finding length-2 chain complexes with sparse boundary operators!
 
 And good news, we already have a way to construct such chain complexes: by taking cellulations of manifolds! Let's consider a cellulated $$D$$-dimensional manifold $$\mathcal{M}$$ with associated cell complex
+
 $$
 \begin{aligned}
     C_D \xrightarrow{\partial_D} C_{D-1} \xrightarrow {\partial_{D-1}} \cdots \xrightarrow{\partial_2} C_1 \xrightarrow{\partial_1} C_0
@@ -399,7 +400,7 @@ More generally, one can define $$D$$-dimensional toric codes for any $$D$$, and 
 
 # Conclusion
 
-At the beginning of this post, we asked for a method to construct parity-check matrices satisfying three conditions: orthogonality, sparsity, and non-zero $$k$$ with growing $$d$$. We found out that algebraic topology provides us with a systematic way to construct orthogonal sparse matrices, by using the boundary operators of manifold cellulations. This works because these boundary operators satisfy the chain complex condition, which is precisely the orthogonality condition required by CSS codes. But we haven't said anything about the parameters of the codes generated this way: can we guarantee that they have non-zero $$k$$ and growing $$d$$? This is what we will explore in the next post, where we will introduce one of the most powerful tools of algebraic topology: the homology and cohomology groups of a chain complex.
+At the beginning of this post, we asked for a method to construct parity-check matrices satisfying three conditions: orthogonality, sparsity, and non-zero $$k$$ with growing $$d$$. We found out that algebraic topology provides us with a systematic way to construct orthogonal sparse matrices, by using the boundary operators of manifold cellulations. This works because these boundary operators satisfy the chain complex condition, which is precisely the orthogonality condition required by CSS codes. But we haven't said anything about the parameters of the codes generated this way: can we guarantee that they have non-zero $$k$$ and growing $$d$$? This is what we will explore in the next post, where we will introduce one of the most powerful tools of algebraic topology: the homology group of a chain complex.
 
 **Acknowledgment**: Thanks to George Umbrarescu for his feedbacks on the post.
 {:.message}
