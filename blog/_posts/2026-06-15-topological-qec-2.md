@@ -313,12 +313,11 @@ Two important examples of homology calculation include the $$D$$-sphere and $$D$
 We derive their homology groups in the following two exercises.
 
 <div class="message" markdown="1">
-**Exercise 2**: Let's consider a cellulation of the $$D$$-sphere consisting of one $$0$$-cell and one $$D$$-cell attached to it:
+**Exercise 2**: Let's consider a cellulation of the $$D$$-sphere consisting of one $$0$$-cell and one $$D$$-cell attached to it. It looks like this for $$S^1$$ and $$S^2$$ respectively:
 
 <div class="figure" style="display:flex; justify-content:center; align-items:center; gap:2rem; flex-wrap:wrap;">
     <img src="/assets/img/blog/topological-qec-2/s1-cellulation.png" height="100"/>
     <img src="/assets/img/blog/topological-qec-2/s2-cellulation.png" height="100"/>
-    <p>...</p>
 </div>
 
 While this is not a polytope cellulation as defined in the [previous post](/blog/2026-05-04-topological-qec/), this can be seen as a CW-complex, which generalizes our polytope-based definition (see Footnote 4 of the previous post).
