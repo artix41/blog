@@ -394,7 +394,7 @@ C_2 \xrightarrow{\partial_2} C_1 \xrightarrow{\partial_1} C_0.
 \end{aligned}
 $$
 
-These give rise, in principle, to two possible surface codes. In the first case, qubits are placed on faces, with stabilizers on volumes and edges; in the second, qubits are placed on edges, with stabilizers on faces and vertices. It is not hard to see that $$\partial_3 = \partial_1^T$$, meaning that for the cubic lattice these two constructions are in fact equivalent, defining the so-called 3D toric code on a cubic lattice. The 3D toric code is one of my favorite codes, with many cool properties such as the existence of a transversal CCZ gate, and I hope to dedicate a full post to it in the future!
+These give rise, in principle, to two possible surface codes. In the first case, qubits are placed on faces, with stabilizers on volumes and edges; in the second, qubits are placed on edges, with stabilizers on faces and vertices. However, one can show that $$\partial_3 = \partial_1^T$$, meaning that for the cubic lattice these two constructions are in fact equivalent, defining the so-called 3D toric code on a cubic lattice. The 3D toric code is one of my favorite codes, with many cool properties such as the existence of a transversal CCZ gate, and I hope to dedicate a full post to it in the future!
 
 More generally, one can define $$D$$-dimensional toric codes for any $$D$$, and depending on the chosen length-2 chain complex, the resulting codes can have different properties. For instance, the 4D toric code can either have a [transversal CCCZ gate](https://arxiv.org/abs/2010.02238) or serve as a [self-correcting quantum memory](https://arxiv.org/abs/0811.0033), depending on this choice.
 
