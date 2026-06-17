@@ -509,7 +509,7 @@ $$
 \end{aligned}
 $$
 
-Now, consider a submanifold $$\mathcal{N} \subseteq \mathcal{M}$$ (usually, with $\mathcal{N} \subset \partial \mathcal{M}$, but not necessarily) with the induced cellulation $$A$$ obtained by taking all cells of $$X$$ that are contained in $$\mathcal{N}$$.
+Now, consider a submanifold $$\mathcal{N} \subseteq \mathcal{M}$$ (usually, with $$\mathcal{N} \subset \partial \mathcal{M}$$, but not necessarily) with the induced cellulation $$A$$ obtained by taking all cells of $$X$$ that are contained in $$\mathcal{N}$$.
 It is described by the chain complex
 
 $$
