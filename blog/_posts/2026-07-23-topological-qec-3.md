@@ -1,6 +1,6 @@
 ---
 title: The topology of topological QEC III — Cohomology groups
-# image: /assets/img/blog/topological-qec/thumbnail.png
+image: /assets/img/blog/topological-qec-3/thumbnail.png
 tags: [quantum-computing]
 description: >
 comments: true
@@ -33,7 +33,7 @@ we can construct a new length-$$D$$ complex, called the **cochain complex** $$C^
 
 $$
 \begin{aligned}
-    C^0 &\xrightarrow{\partial^1} C^1 \xrightarrow{\partial^2} \cdots \xrightarrow{\partial^{D-1}} C^{D-1} \xrightarrow{\partial^{D}} C^D
+    C^0 &\xrightarrow{\delta^1} C^1 \xrightarrow{\delta^2} \cdots \xrightarrow{\delta^{D-1}} C^{D-1} \xrightarrow{\delta^{D}} C^D
 \end{aligned}
 $$
 
@@ -45,11 +45,11 @@ $$
 \end{aligned}
 $$
 
-and the **coboundary operators** $$\partial^i: C^{i-1} \to C^i$$ are defined as
+and the **coboundary operators** $$\delta^i: C^{i-1} \to C^i$$ are defined as
 
 $$
 \begin{aligned}
-    \partial^i(f)(x) = f ( \partial_i (x))
+    \delta^i(f)(x) = f ( \partial_i (x))
 \end{aligned}
 $$
 
@@ -84,7 +84,7 @@ These send row vectors of $$C^{i-1}$$ to row vectors of $$C^i$$ by composing the
 
 $$
 \begin{aligned}
-    \partial^i:\: \begin{pmatrix} f_1 & f_2 & \cdots & f_m \end{pmatrix} \mapsto \begin{pmatrix} f_1 & f_2 & \cdots & f_m \end{pmatrix}
+    \delta^i:\: \begin{pmatrix} f_1 & f_2 & \cdots & f_m \end{pmatrix} \mapsto \begin{pmatrix} f_1 & f_2 & \cdots & f_m \end{pmatrix}
     \begin{pmatrix}
         & & \\
         & \partial_i & \\
@@ -97,7 +97,7 @@ It's easy to check that these indeed obey the chain complex condition:
 
 $$
 \begin{aligned}
-    \partial^{i+1} \partial^i f = \begin{pmatrix} f_1 & f_2 & \cdots & f_m \end{pmatrix}
+    \delta^{i+1} \delta^i f = \begin{pmatrix} f_1 & f_2 & \cdots & f_m \end{pmatrix}
     \begin{pmatrix}
         & & \\
         & \partial_i & \\
@@ -115,11 +115,11 @@ $$
 since $$\partial_{i} \partial_{i+1} = 0$$.
 
 But how can we interpret those coboundary operators? Again, it's easier to interpret them by looking at the transpose.
-Using the isomorphism $$\psi$$ we saw earlier in each degree, let's define the operator $$\tilde{\partial}^i:\: C_{i-1} \rightarrow C_i$$ as
+Using the isomorphism $$\psi$$ we saw earlier in each degree, let's define the operator $$\tilde{\delta}^i:\: C_{i-1} \rightarrow C_i$$ as
 
 $$
 \begin{aligned}
-    \tilde{\partial}^i = \psi_i \circ \partial^i \circ \psi_{i-1}^{-1}
+    \tilde{\delta}^i = \psi_i \circ \delta^i \circ \psi_{i-1}^{-1}
 \end{aligned}
 $$
 
@@ -131,7 +131,7 @@ $$
     \begin{pmatrix} c_1 \\ c_2 \\ \vdots \\ c_m \end{pmatrix}
     & \xrightarrow{\psi^{-1}}
     \begin{pmatrix} c_1 & c_2 & \cdots & c_m \end{pmatrix} \\
-    & \xrightarrow{\partial^i}
+    & \xrightarrow{\delta^i}
     \begin{pmatrix} c_1 & c_2 & \cdots & c_m \end{pmatrix}
     \begin{pmatrix}
         & & \\
@@ -152,7 +152,7 @@ Therefore, for every $$c \in C_{i-1}$$, we simply have
 
 $$
 \begin{aligned}
-    \tilde{\partial}^i(c) = \partial_i^T c
+    \tilde{\delta}^i(c) = \partial_i^T c
 \end{aligned}
 $$
 
@@ -194,13 +194,13 @@ Schematically, if $$C^\star_j$$ denotes the space of $$j$$-cells in the dual cel
 
 $$
 \begin{array}{ccccccccc}
-     C^0 &  \overset{\partial^1}{\longrightarrow} &  C^1 &  \overset{\partial^2}{\longrightarrow} &  \cdots &  \overset{\partial^{D-1}}{\longrightarrow} &  C^{D-1} &  \overset{\partial^D}{\longrightarrow} &  C^D \\
+     C^0 &  \overset{\delta^1}{\longrightarrow} &  C^1 &  \overset{\delta^2}{\longrightarrow} &  \cdots &  \overset{\delta^{D-1}}{\longrightarrow} &  C^{D-1} &  \overset{\delta^D}{\longrightarrow} &  C^D \\
     \cong & & \cong & & & & \cong & & \cong \\
      C^\star_D &  \overset{\partial^\star_D}{\longrightarrow} &  C^\star_{D-1} &  \overset{\partial^\star_{D-1}}{\longrightarrow} &  \cdots &  \overset{\partial^\star_2}{\longrightarrow} &  C^\star_1 &  \overset{\partial^\star_1}{\longrightarrow} &  C^\star_0 .
 \end{array}
 $$
 
-The difference between the cochain complex and the dual complex is therefore just a matter of interpretation and indices: $$i$$-dimensional objects of the cochain complex are interpreted as $$(D-i)$$-dimensional objects in the dual cell complex, but the spaces and boundary operators are algebraically the same, up to the relabeling $$C^i \leftrightarrow C^\star_{D-i}$$ and $$\partial^i \leftrightarrow \partial^\star_{D-i+1}$$.
+The difference between the cochain complex and the dual complex is therefore just a matter of interpretation and indices: $$i$$-dimensional objects of the cochain complex are interpreted as $$(D-i)$$-dimensional objects in the dual cell complex, but the spaces and maps are algebraically the same, up to the relabeling $$C^i \leftrightarrow C^\star_{D-i}$$ and $$\delta^i \leftrightarrow \partial^\star_{D-i+1}$$.
 
 This gives us all the elements needed to define cohomology.
 The **cohomology groups** $$H^i(C_\bullet)$$ of a chain complex $$C_\bullet$$ are simply the homology groups of the cochain complex:
@@ -208,7 +208,7 @@ The **cohomology groups** $$H^i(C_\bullet)$$ of a chain complex $$C_\bullet$$ ar
 $$
 \begin{aligned}
     H^i(C_\bullet) &:= H_i(C^\bullet) \\
-    &= \ker(\partial^{i+1}) / \Im(\partial^{i}) \\
+    &= \ker(\delta^{i+1}) / \Im(\delta^{i}) \\
     &\cong \ker(\partial_{i+1}^T) / \Im(\partial_{i}^T)
 \end{aligned}
 $$
