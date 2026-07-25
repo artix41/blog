@@ -9,7 +9,7 @@ related_posts:
 ---
 
 In the two previous posts, we learned about [chain complexes](/blog/2026-05-04-topological-qec/) and [their homology groups](/blog/2026-06-15-topological-qec-2/).
-We are now ready for another foundational concept needed to understand QEC from a topological perspective: in this copost, we dive into **cohomology**!
+We are now ready for another foundational concept needed to understand QEC from a topological perspective: in this copost, we will dive into **cohomology**!
 
 When learning about the surface code, we saw that $$Z$$ logical operators can be seen as loops in a *dual lattice*, constructed by replacing faces of the original lattice by vertices, vertices by faces, and edges by orthogonal ones. What is the interpretation of this construction from an algebraic topology perspective? It turns out that this dual lattice construction is an instance of a more general construction called the *cochain complex*, which leads to the definition of *cohomology groups*.
 Cohomology groups are closely related to homology groups, and as we will see, can be interpreted as $$Z$$ logical cosets if the homology groups correspond to $$X$$ logical cosets.
@@ -49,11 +49,9 @@ and the **coboundary operators** $$\delta^i: C^{i-1} \to C^i$$ are defined as
 
 $$
 \begin{aligned}
-    \delta^i(f)(x) = f ( \partial_i (x))
+    \delta^i(f) = f \circ \partial_i.
 \end{aligned}
 $$
-
-for every $$x \in C_i$$.
 
 Let's interpret these new objects.
 An element $$f \in C^i$$, that we call an $$\bm{i}$$-**cochain**, is a map that outputs a bit for every $$i$$-chain.
@@ -114,7 +112,7 @@ $$
 
 since $$\partial_{i} \partial_{i+1} = 0$$.
 
-But how can we interpret those coboundary operators? Again, it's easier to interpret them by looking at the transpose.
+But how can we interpret these coboundary operators? Again, it's easier to interpret them by looking at the transpose.
 Using the isomorphism $$\psi$$ we saw earlier in each degree, let's define the operator $$\tilde{\delta}^i:\: C_{i-1} \rightarrow C_i$$ as
 
 $$
@@ -215,9 +213,13 @@ $$
 
 where the last line comes from the isomorphism between $$C^\bullet$$ and $$\tilde{C}^\bullet$$ that we saw earlier.
 
-In the case of cell complexes, can we interpret the cohomology groups as the homology groups of the dual cellulation? Yes, as long as we make sure to use the right indices.
-As we defined it, $$H_i(C_\bullet)$$ is a space of $$i$$-dimensional objects, and $$H^i(C_\bullet)$$ can also be seen as a space of $$i$$-dimensional objects of the same cellulation.
-However, $$i$$-dimensional objects of the original cellulation correspond to $$(D-i)$$-dimensional objects of the dual cellulation, meaning that if we denote by $$C^\star_\bullet$$ the dual cell complex, $$H^i(C_\bullet)$$ is actually isomorphic to $$H_{D-i}(C^\star_\bullet)$$, the $$(D-i)$$-homology group of the dual cell complex.
+In the case of cell complexes, can we interpret the cohomology groups as the homology groups of the dual cellulation? Yes, as long as we make sure to use the right indices:
+
+$$
+\begin{aligned}
+    H^i(C_\bullet) \cong H_{D-i}(C^\star_\bullet).
+\end{aligned}
+$$
 
 Going back to quantum error correction, we can give cohomology a clear interpretation. Consider the length-2 chain complex associated to a CSS code with parity check matrices $$H_X$$ and $$H_Z$$,
 
@@ -253,8 +255,8 @@ Can we prove this rigorously from homological algebra?
 
 The answer is yes, and we will see here two important theorems that relate homology and cohomology groups.
 The first one, called the **universal coefficient theorem** (UCT), shows that $$H_i(C_\bullet)$$ and $$H^i(C_\bullet)$$ are actually isomorphic if $$C_\bullet$$ is a chain complex over $$\mathbb{Z}_2$$, and gives bases for both that satisfy the intersection property mentioned above.
-The second one, **Poincaré duality**, applies to cellulations of manifolds and shows that $$H_i(C_\bullet)$$ and $$H^{n-i}(C_\bullet)$$ are isomorphic.
-Together with the UCT, it also means that $$H_i(C_\bullet)$$ and $$H_{n-i}(C_\bullet)$$ are isomorphic, so for cell complexes coming from closed manifolds, we only ever need to calculate half of the homology groups.
+The second one, **Poincaré duality**, applies to cellulations of manifolds and shows that $$H_i(C_\bullet)$$ and $$H^{D-i}(C_\bullet)$$ are isomorphic.
+Together with the UCT, it also means that $$H_i(C_\bullet)$$ and $$H_{D-i}(C_\bullet)$$ are isomorphic, so for cell complexes coming from closed manifolds, we only ever need to calculate half of the homology groups.
 
 ## Universal coefficient theorem
 
@@ -333,7 +335,7 @@ $$
 \end{aligned}
 $$
 
-This means that we can obtain cohomology with coefficients in any group $$G$$ from the homology groups of the chain complex over $$\mathbb{Z}$$, making $$\mathbb{Z}$$ the "universal" coefficient ring.
+This means that we can obtain cohomology with coefficients in any group $$G$$ from the homology groups of the chain complex over $$\mathbb{Z}$$, making $$\mathbb{Z}$$ a "universal" coefficient ring.
 More generally, if the homology groups are not free, the UCT also gives us a way to compute cohomology groups with coefficients in $$G$$ from homology groups with coefficients in $$\mathbb{Z}$$, but the relation is more complicated and involves homology groups at different levels.
 
 ## Poincaré duality
@@ -341,17 +343,17 @@ More generally, if the homology groups are not free, the UCT also gives us a way
 In the case of the cellulation of a closed manifold, we can go one step further and relate the homology and cohomology groups of different indices.
 This is known as **Poincaré duality**.
 
-**Theorem (Poincaré duality)**: Let $$C_\bullet$$ be a chain complex over $$\mathbb{Z}_2$$, associated to a cellulation of a closed $$n$$-dimensional manifold.
-Then for every $$i$$, we have $$H^i(C_\bullet) \cong H_{n-i}(C_\bullet)$$.
+**Theorem (Poincaré duality)**: Let $$C_\bullet$$ be a chain complex over $$\mathbb{Z}_2$$, associated to a cellulation of a closed $$D$$-dimensional manifold.
+Then for every $$i$$, we have $$H^i(C_\bullet) \cong H_{D-i}(C_\bullet)$$.
 {:.message}
 
-Using the UCT, this also implies that $$H_i(C_\bullet) \cong H_{n-i}(C_\bullet)$$, or, in terms of Betti numbers, $$b_i = b_{n-i}$$.
+Using the UCT, this also implies that $$H_i(C_\bullet) \cong H_{D-i}(C_\bullet)$$, or, in terms of Betti numbers, $$b_i = b_{D-i}$$.
 
-Why is Poincaré duality true? Remember that $$H^i(C_\bullet)$$ can be interpreted as the homology group of the dual cellulation, $$H_{n-i}(C^\star_\bullet)$$.
-But all cellulations of a given manifold have the same homology groups, so in particular $$H_{n-i}(C^\star_\bullet) \cong H_{n-i}(C_\bullet)$$. This gives a good intuition for why $$H^i(C_\bullet) \cong H_{n-i}(C_\bullet)$$.
+Why is Poincaré duality true? Remember that $$H^i(C_\bullet)$$ can be interpreted as the homology group of the dual cellulation, $$H_{D-i}(C^\star_\bullet)$$.
+But all cellulations of a manifold $$\mathcal{M}$$ have the same homology groups, so in particular $$H_{D-i}(C^\star_\bullet) \cong H_{D-i}(C_\bullet)=H_i(\mathcal{M})$$.
 
-However, this argument does not provide us with a very concrete isomorphism between $$i$$-cochains and $$(n-i)$$-chains.
-Another formulation of Poincaré duality uses the notion of *cap product* to derive a very concrete way to go from $$i$$-cochains to $$(n-i)$$-chains.
+However, this argument does not provide us with a very concrete isomorphism between $$i$$-cochains and $$(D-i)$$-chains.
+Another formulation of Poincaré duality uses the notion of *cap product* to derive a very concrete way to go from $$i$$-cochains to $$(D-i)$$-chains.
 You can find that version of the theorem in [Hatcher, Section 3.3](https://pi.math.cornell.edu/~hatcher/AT/AT.pdf).
 
 For a 3D torus, Poincaré duality maps for instance any $$1$$-cycle (e.g. a string of edges with no boundary) to a $$2$$-cocycle (e.g. a string of parallel faces with no coboundary).
@@ -364,13 +366,15 @@ Here is an illustration of such a $$1$$-cycle (red) and a Poincaré-dual $$2$$-c
 
 From a QEC perspective, Poincaré duality tells us for instance directly that any surface code defined on a cellulation of the 3-torus has the same number of logical qubits, no matter whether we define the code using $$C_2 \rightarrow C_1 \rightarrow C_0$$ (which has $$k=b_1$$) or $$C_3 \rightarrow C_2 \rightarrow C_1$$ (which has $$k=b_2$$).
 
+More generally, we saw in the previous post that the $$D$$-torus has Betti numbers $$b_i=\binom{D}{i}$$. Poincaré duality can be seen here from the symmetry of the binomial coefficients: $$\binom{D}{i} = \binom{D}{D-i}$$.
+
 # Conclusion
 
 We now have the missing half of the homological picture of QEC introduced in the previous post!
 Homology describes cycles modulo boundaries, which naturally captures one type of logical operator in a CSS code. Cohomology gives the dual story, capturing the other type through cocycles modulo coboundaries, or for closed manifolds, homology of the dual cellulation.
 The universal coefficient theorem tells us that, over $$\mathbb{Z}_2$$, the intersection between cycles and cocycles only depend on their homology and cohomology classes, capturing the intersection property of logical operators in a CSS code.
 For cellulations of closed manifolds, Poincaré duality provides an isomorphism between homology and cohomology groups of complementary dimensions.
-Together, these ideas explain why the dual lattice naturally appears in the surface code and give us a helpful way to move between primal cycles, dual cycles, and logical operators.
+Moving between the primal and the dual lattice, or between chain and cochain complexes, is often a very useful trick in QEC. For instance, color codes (and its generalizations) are defined from a lattice whose dual is a (colorable) simplicial complex, and it's often easier to prove properties of the primal lattice by looking at the dual simplicial complex instead. But this will be the subject of another post!
 
 There is much more to say about cohomology, and more generally about homological algebra, that is relevant for QEC. For instance, we can define a notion of *cup product* between cohomology classes, which [can be used](https://arxiv.org/abs/2410.16250) to find short-depth diagonal logical gates (including non-Clifford gates) in some CSS codes. We can define *chain maps* to [relate different CSS codes](https://arxiv.org/abs/1905.07393) or [fault-tolerant protocols](https://arxiv.org/abs/2509.09603), or to find [logical gates](https://arxiv.org/abs/2607.02482). Another concept, the *mapping cone* can allow us to [design lattice surgery protocols](https://arxiv.org/abs/2410.02753) or [reduce the weight of stabilizers](https://arxiv.org/abs/2402.05228) in a code. I hope to expand this series to cover all those concepts in the future! In the meantime, all this new knowledge should (hopefully) already make your next encounter with homological algebra in QEC papers feel a little less intimidating!
 
