@@ -352,7 +352,7 @@ What about higher dimensions? Let's consider a cellulation of a 3D manifold, suc
 </div>
 
 <script type="module">
-    import { Interface } from 'https://gui.quantumcodes.io/js/gui.js'
+    import { Interface } from 'https://gui.arthurpesah.me/js/gui.js'
 
     const params = {
         dimension: 3,
@@ -365,7 +365,7 @@ What about higher dimensions? Let's consider a cellulation of a 3D manifold, suc
 
     let id = 'toric-code-3d';
 
-    let gui = new Interface(params, {}, {}, 'https://gui.quantumcodes.io', id);
+    let gui = new Interface(params, {}, {}, 'https://gui.arthurpesah.me', id);
 
     await gui.init();
 </script>
